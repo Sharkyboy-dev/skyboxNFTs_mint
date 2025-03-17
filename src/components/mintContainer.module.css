@@ -9,6 +9,7 @@
     text-align: center;
     font-family: var(--font-rockSalt);
     font-size: 2em;
+    color: var(--c4);
 }
 
 .ContentContainer {
@@ -116,11 +117,14 @@
 .MintBoxLeft span:nth-child(1) {
     font-weight: 600;
     font-size: 1.3em;
+    color: var(--c2);
 }
 
 .MintBoxLeft span:nth-child(2) {
     font-weight: 600;
     font-size: 1.2em;
+    color: var(--c4);
+
 }
 
 .MintBoxRight {
@@ -130,6 +134,8 @@
     font-weight: 400;
     font-weight: bold;
     font-size: 1.2em;
+    color: black;
+
 }
 
 .MintBox button {

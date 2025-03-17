@@ -4,16 +4,27 @@
     align-items: center;
     justify-content: space-between;
     padding: 1em;
-    border-bottom: 1px solid rgb(0, 0, 0);
+    border-bottom: 1px solid var(--c2);
 
 }
 
-.LogoContainer {
+.LogoContainer a {
     font-size: 1.5em;
+    color: var(--c4);
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    /* border: 1px solid black; */
+    gap: 10px;
+    font-family: var(--font-rockSalt);
+
 }
 
 .LogoContainer span {
-    font-size: 0.5em;
-    padding: 0 0.6em;
-    color: rgb(231, 200, 22);
+    /* border: 1px solid black; */
+}
+
+.LogoContainer img {
+    width: 60px;
+    /* border: 1px solid black; */
 }

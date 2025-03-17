@@ -8,10 +8,14 @@ const Navbar = () => {
   return (
     <div className={styles.navbarContainer}>
       <div className={styles.LogoContainer}>
-        <a href="/">Tick Tack DAO</a>
-        <span>beta</span>
+        <a href="/">
+          <img src="/logo.png" alt="" />
+          <span>SHARKYBOY NFTs</span>
+        </a>
       </div>
-      <WalletMultiButton style={{ background: "grey" }} />
+      <WalletMultiButton
+        style={{ background: "var(--c2)", color: "var(--c3)" }}
+      />
     </div>
   );
 };

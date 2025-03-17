@@ -1,10 +1,10 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --c1: #66B6C3;
-  --c2: #E63946;
-  --c3: #333333;
-  --c4: #E3C7A6;
+  --background: var(--c3);
+  --foreground: var(--c1);
+  --c1: #ffffff;
+  --c4: #E63946;
+  --c3: #191a29;
+  --c2: #E3C7A6;
 
 }
 
