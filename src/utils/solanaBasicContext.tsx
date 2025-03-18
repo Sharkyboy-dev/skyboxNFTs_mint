@@ -10,7 +10,7 @@ import {
 } from "@metaplex-foundation/mpl-candy-machine";
 import { publicKey } from "@metaplex-foundation/umi";
 import { set } from "@metaplex-foundation/umi/serializers";
-import { candyMachine } from "@/app/page";
+import { candyMachine } from "./constant";
 
 type SolanaTimeContextType = {
   solanaTime: number;
