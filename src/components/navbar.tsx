@@ -2,7 +2,7 @@
 
 import React from "react";
 import styles from "./navbar.module.css";
-import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
+import { WalletMultiButton } from "@/app/page";
 
 const Navbar = () => {
   return (

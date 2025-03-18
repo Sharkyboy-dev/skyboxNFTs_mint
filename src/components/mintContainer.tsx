@@ -1,7 +1,96 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import styles from "./mintContainer.module.css";
+import { useCandyMachine } from "@/utils/solanaBasicContext";
+import { useUmi } from "@/utils/useUmi";
+import { dummyPublicKey } from "@/utils/AppWalletProvider";
+import {
+  generateSigner,
+  publicKey,
+  sol,
+  some,
+  transactionBuilder,
+} from "@metaplex-foundation/umi";
+import {
+  setComputeUnitLimit,
+  setComputeUnitPrice,
+} from "@metaplex-foundation/mpl-toolbox";
+import { mintV2 } from "@metaplex-foundation/mpl-candy-machine";
+import { TokenStandard } from "@metaplex-foundation/mpl-token-metadata";
+import { toast } from "react-toastify";
 
 const MintContainer = () => {
+  const { CandyMachine, CandyGuard, isCMLoading, setIsCMLoading } =
+    useCandyMachine();
+  const [mintingText, setMintingText] = useState("Mint Now");
+
+  const umi = useUmi();
+
+  async function createNft(buyer: any) {
+    if (!CandyMachine || !CandyGuard || !CandyMachine?.publicKey) {
+      return;
+    }
+
+    setMintingText("Minting..");
+
+    try {
+      const nftMint = generateSigner(umi);
+
+      const groupToUse = CandyGuard?.groups.find(
+        (group) => group.label === "PUBLIC"
+      );
+      const groupPrice = groupToUse?.guards.solPayment;
+      if (groupPrice?.__option != "Some" || !groupPrice?.value) return;
+
+      const tx = await transactionBuilder()
+        .add(setComputeUnitLimit(umi, { units: 800_000 }))
+        .add(setComputeUnitPrice(umi, { microLamports: 100_000 }))
+        .add(
+          mintV2(umi, {
+            candyMachine: CandyMachine?.publicKey,
+            candyGuard: CandyGuard?.publicKey,
+            nftMint: nftMint,
+
+            tokenStandard: TokenStandard.ProgrammableNonFungible,
+            collectionMint: CandyMachine?.collectionMint,
+            collectionUpdateAuthority: publicKey(
+              "finzc9xMFo6F5GqPhJrneMnTsZu5eocJzJTMooBGLgv"
+            ),
+            group: some("PUBLIC"),
+            minter: buyer,
+            mintArgs: {
+              solPayment: groupPrice?.value,
+            },
+          })
+        );
+
+      toast.info("Minting Tx sent");
+
+      let buildTx = await tx.buildWithLatestBlockhash(umi);
+      buildTx = await umi.identity.signTransaction(buildTx);
+
+      const signature = await umi.rpc.sendTransaction(buildTx, {
+        commitment: "finalized",
+      });
+
+      const confirmTx = await umi.rpc.confirmTransaction(signature, {
+        strategy: {
+          type: "blockhash",
+          ...(await umi.rpc.getLatestBlockhash()),
+        },
+      });
+
+      if (confirmTx) {
+        toast.success("Transaction confirmed");
+        setIsCMLoading && setIsCMLoading(true);
+      }
+    } catch (error) {
+      setIsCMLoading && setIsCMLoading(true);
+      toast.error("Tx failed");
+    } finally {
+      setMintingText("Mint Now");
+    }
+  }
   return (
     <div className={styles.MintDiv}>
       <h3> SharkyBoy Genesis Collection Mint</h3>
@@ -34,7 +123,6 @@ const MintContainer = () => {
             </div>
             <div
               style={{
-                // width: "100%",
                 background: "black",
                 margin: "10px 1em",
                 height: "20px",
@@ -42,10 +130,18 @@ const MintContainer = () => {
                 position: "relative",
               }}
             >
-              <div className={styles.MintPercent}>10/100</div>
+              <div className={styles.MintPercent}>
+                {" "}
+                {Number(CandyMachine?.itemsRedeemed)}&nbsp;/&nbsp;
+                {Number(CandyMachine?.itemsLoaded)}
+              </div>
               <div
                 style={{
-                  width: "60%",
+                  width: `${
+                    (Number(CandyMachine?.itemsRedeemed) /
+                      Number(CandyMachine?.itemsLoaded)) *
+                    100
+                  }%`,
                   height: "20px",
                   borderRadius: "10px",
 
@@ -64,25 +160,20 @@ const MintContainer = () => {
                   <span>0.5 SOL</span>
                 </div>
 
-                <div className={styles.MintBoxRight}>
+                {/* <div className={styles.MintBoxRight}>
                   <span>100:59:00</span>
-                </div>
+                </div> */}
               </div>
-              <button>Mint Now !</button>
-            </div>
-            <div className={styles.MintBox}>
-              <div className={styles.MintDetails}>
-                <div className={styles.MintBoxLeft}>
-                  <span>OG Mint</span>
-
-                  <span>0.5 SOL</span>
-                </div>
-
-                <div className={styles.MintBoxRight}>
-                  <span>100:59:00</span>
-                </div>
-              </div>
-              <button>Mint Now !</button>
+              <button
+                onClick={() => createNft(umi.identity.publicKey)}
+                disabled={
+                  isCMLoading ||
+                  mintingText !== "Mint Now" ||
+                  umi.identity.publicKey === dummyPublicKey
+                }
+              >
+                {isCMLoading ? "Loading.." : mintingText}
+              </button>
             </div>
           </div>
         </div>
