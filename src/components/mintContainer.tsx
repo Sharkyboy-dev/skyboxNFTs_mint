@@ -18,7 +18,7 @@ import {
 import { mintV2 } from "@metaplex-foundation/mpl-candy-machine";
 import { TokenStandard } from "@metaplex-foundation/mpl-token-metadata";
 import { toast } from "react-toastify";
-
+import bs58 from "bs58";
 const MintContainer = () => {
   const { CandyMachine, CandyGuard, isCMLoading, setIsCMLoading } =
     useCandyMachine();
@@ -43,14 +43,13 @@ const MintContainer = () => {
       if (groupPrice?.__option != "Some" || !groupPrice?.value) return;
 
       const tx = await transactionBuilder()
-        .add(setComputeUnitLimit(umi, { units: 800_000 }))
+        .add(setComputeUnitLimit(umi, { units: 1_000_000 }))
         .add(setComputeUnitPrice(umi, { microLamports: 100_000 }))
         .add(
           mintV2(umi, {
             candyMachine: CandyMachine?.publicKey,
             candyGuard: CandyGuard?.publicKey,
             nftMint: nftMint,
-
             tokenStandard: TokenStandard.ProgrammableNonFungible,
             collectionMint: CandyMachine?.collectionMint,
             collectionUpdateAuthority: publicKey(
@@ -62,25 +61,30 @@ const MintContainer = () => {
               solPayment: groupPrice?.value,
             },
           })
-        );
+        )
+        .sendAndConfirm(umi);
 
-      toast.info("Minting Tx sent");
+      // toast.info("Minting Tx sent");
 
-      let buildTx = await tx.buildWithLatestBlockhash(umi);
-      buildTx = await umi.identity.signTransaction(buildTx);
+      // let buildTx = await tx.buildWithLatestBlockhash(umi);
+      // console.log("Build Tx", buildTx);
+      // buildTx = await umi.identity.signTransaction(buildTx);
+      // const signature = await umi.rpc.sendTransaction(buildTx, {
+      //   commitment: "finalized",
+      //   skipPreflight: true,
+      // });
+      // console.log(bs58.encode(signature));
 
-      const signature = await umi.rpc.sendTransaction(buildTx, {
-        commitment: "finalized",
-      });
+      // const confirmTx = await umi.rpc.confirmTransaction(signature, {
+      //   strategy: {
+      //     type: "blockhash",
+      //     ...(await umi.rpc.getLatestBlockhash()),
+      //   },
+      // });
 
-      const confirmTx = await umi.rpc.confirmTransaction(signature, {
-        strategy: {
-          type: "blockhash",
-          ...(await umi.rpc.getLatestBlockhash()),
-        },
-      });
-
-      if (confirmTx) {
+      // console.log("confirmg tx");
+      // console.log("confirmTx", confirmTx);
+      if (tx) {
         toast.success("Transaction confirmed");
         setIsCMLoading && setIsCMLoading(true);
       }
@@ -157,7 +161,7 @@ const MintContainer = () => {
                 <div className={styles.MintBoxLeft}>
                   <span>White List Mint</span>
 
-                  <span>0.5 SOL</span>
+                  <span>1 SOL</span>
                 </div>
 
                 {/* <div className={styles.MintBoxRight}>
