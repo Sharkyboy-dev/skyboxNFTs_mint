@@ -1,5 +1,5 @@
 .Maincontainer {
-    max-width: 1600px;
+    /* max-width: 1600px; */
     min-height: 100vh;
     display: flex;
     flex-direction: column;

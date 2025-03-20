@@ -18,7 +18,9 @@ body {
 
 body {
   color: var(--foreground);
-  background: var(--background);
+  background-image: url('/bg.png');
+  background-repeat: no-repeat;
+  background-size: cover;
   font-family: Poppins, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

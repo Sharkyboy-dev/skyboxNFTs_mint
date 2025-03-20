@@ -19,6 +19,14 @@ import { mintV2 } from "@metaplex-foundation/mpl-candy-machine";
 import { TokenStandard } from "@metaplex-foundation/mpl-token-metadata";
 import { toast } from "react-toastify";
 import bs58 from "bs58";
+import {
+  FaDiscord,
+  FaFacebook,
+  FaGithub,
+  FaInstagram,
+  FaTelegram,
+  FaXTwitter,
+} from "react-icons/fa6";
 const MintContainer = () => {
   const { CandyMachine, CandyGuard, isCMLoading, setIsCMLoading } =
     useCandyMachine();
@@ -97,87 +105,80 @@ const MintContainer = () => {
   }
   return (
     <div className={styles.MintDiv}>
-      <h3> SharkyBoy Genesis Collection Mint</h3>
       <div className={styles.ContentContainer}>
         <div className={styles.ContentLeft}>
-          <img src="/hero.webp" alt="" />
+          <img src="/logoGif.gif" alt="" />
+          <span>100:40:30</span>
+          <button
+            onClick={() => createNft(umi.identity.publicKey)}
+            disabled={
+              isCMLoading ||
+              mintingText !== "Mint Now" ||
+              umi.identity.publicKey === dummyPublicKey
+            }
+          >
+            {isCMLoading ? "Loading.." : mintingText}
+          </button>
         </div>
         <div className={styles.ContentRight}>
-          <div className={styles.SymbolDiv}>
-            <span>Symbol :</span>
-            <span>FIN</span>
-          </div>
           <div className={styles.DescDiv}>
-            <span>Description&nbsp;: </span>
-            <p>
-              The SharkyBoy Genesis Collection is a limited 1,000-piece NFT
-              series featuring unique, battle-ready mutant sharks with bold
-              designs, rare traits, and legendary origins. More than just
-              collectibles, these NFTs grant exclusive community perks, future
-              airdrops, and governance rights in the SharkyBoy ecosystem. With a
-              mix of samurai warriors, street legends, and high-tech combat
-              sharks, this collection blends style, rarity, and innovation into
-              a powerful Web3 experience. Own a piece of the ocean's fiercest
-              warriors—once they're gone, they're gone forever.
-            </p>
+            <span>OWN THE STORY. SHAPE THE FUTURE. JOIN THE SHARKYGANG.</span>
+
+            <div className={styles.ButtonsContainer}>
+              <button>Origin Story</button>
+              <button>Roadmap</button>
+            </div>
+            <div className={styles.IconsContainer}>
+              <a href="/">
+                <FaTelegram />
+              </a>
+              <a href="/">
+                <FaInstagram />
+              </a>
+
+              <a href="/">
+                <FaXTwitter />
+              </a>
+              <a href="/">
+                <FaDiscord />
+              </a>
+              <a href="/">
+                <FaGithub />
+              </a>
+            </div>
           </div>
           <div className={styles.MintCountBox}>
-            <div>
-              <span>Total Mint : </span>
-            </div>
-            <div
-              style={{
-                background: "black",
-                margin: "10px 1em",
-                height: "20px",
-                borderRadius: "10px",
-                position: "relative",
-              }}
-            >
+            <span>Total Mint : </span>
+            <div className={styles.Counttext}>
+              <div
+                style={{
+                  background: "white",
+                  margin: "10px 1em",
+                  height: "30px",
+                  borderRadius: "10px",
+                  padding: "3px",
+                  width: "90%",
+                }}
+              >
+                <div
+                  style={{
+                    width: `${
+                      (Number(CandyMachine?.itemsRedeemed) /
+                        Number(CandyMachine?.itemsLoaded)) *
+                      100
+                    }%`,
+                    minWidth: "2%",
+                    height: "23px",
+                    borderRadius: "10px",
+
+                    background: "black",
+                  }}
+                />
+              </div>
               <div className={styles.MintPercent}>
-                {" "}
                 {Number(CandyMachine?.itemsRedeemed)}&nbsp;/&nbsp;
                 {Number(CandyMachine?.itemsLoaded)}
               </div>
-              <div
-                style={{
-                  width: `${
-                    (Number(CandyMachine?.itemsRedeemed) /
-                      Number(CandyMachine?.itemsLoaded)) *
-                    100
-                  }%`,
-                  height: "20px",
-                  borderRadius: "10px",
-
-                  background:
-                    " linear-gradient(108deg, rgba(230,57,70,1) 0%, rgba(227,199,166,1) 44%, rgba(102,182,195,1) 77%)",
-                }}
-              />
-            </div>
-          </div>
-          <div className={styles.CardBox}>
-            <div className={styles.MintBox}>
-              <div className={styles.MintDetails}>
-                <div className={styles.MintBoxLeft}>
-                  <span>White List Mint</span>
-
-                  <span>1 SOL</span>
-                </div>
-
-                {/* <div className={styles.MintBoxRight}>
-                  <span>100:59:00</span>
-                </div> */}
-              </div>
-              <button
-                onClick={() => createNft(umi.identity.publicKey)}
-                disabled={
-                  isCMLoading ||
-                  mintingText !== "Mint Now" ||
-                  umi.identity.publicKey === dummyPublicKey
-                }
-              >
-                {isCMLoading ? "Loading.." : mintingText}
-              </button>
             </div>
           </div>
         </div>

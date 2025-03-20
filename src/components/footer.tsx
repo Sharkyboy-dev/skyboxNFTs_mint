@@ -49,7 +49,7 @@ const Footer = () => {
         </div>
       </div>
       <span className={styles.FooterText}>
-        Ticktac DAO Copyright © 2025 Ticktac DAO - All rights reserved
+        SHARKYBOY NFTs DAO Copyright © 2025 SHARKYBOY NFTs - All rights reserved
       </span>
     </div>
   );
