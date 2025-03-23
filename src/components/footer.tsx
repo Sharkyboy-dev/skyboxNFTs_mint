@@ -5,6 +5,8 @@ import {
   FaFacebook,
   FaXTwitter,
   FaDiscord,
+  FaTelegram,
+  FaGithub,
 } from "react-icons/fa6";
 
 const Footer = () => {
@@ -14,25 +16,25 @@ const Footer = () => {
         <div className={styles.FooterLinksBox}>
           <span>Follow us on </span>
           <div className={styles.Icons}>
-            <a href="/">
+            <a href="https://t.co/2PyAgbMLEj" target="_blank">
+              <FaTelegram />
+            </a>
+            <a href="http://instagram.com/sharkyboy_nft" target="_blank">
               <FaInstagram />
             </a>
-            <a href="/">
-              <FaFacebook />
+            <a href="https://github.com/Sharkyboy-dev" target="_blank">
+              <FaGithub />
             </a>
-            <a href="/">
+            <a href=" https://x.com/sharkyboy_nft" target="_blank">
               <FaXTwitter />
-            </a>
-            <a href="/">
-              <FaDiscord />
             </a>
           </div>
         </div>
 
         <div className={styles.FooterLinksBox}>
-          <a href="/">Disclaimer</a>
-          <a href="/">Privacy Policy</a>
-          <a href="/">Terms & Condition</a>
+          <a href="/disclaimer">Disclaimer</a>
+          <a href="/privacypolicy">Privacy Policy</a>
+          <a href="/termsandcondition">Terms & Condition</a>
         </div>
 
         <div className={styles.FooterLinksBox}>

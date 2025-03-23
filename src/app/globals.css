@@ -5,6 +5,7 @@
   --c4: #E63946;
   --c3: #191a29;
   --c2: #E3C7A6;
+  --c5: #0ec7e4;
 
 }
 
@@ -18,10 +19,8 @@ body {
 
 body {
   color: var(--foreground);
-  background-image: url('/bg.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-  font-family: Poppins, sans-serif;
+
+  font-family: var(--my-font), sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

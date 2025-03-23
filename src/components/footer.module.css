@@ -5,6 +5,7 @@
   gap: 1em;
   margin: 0 0 2em 0;
   padding: 1em 0;
+  background-color: black;
 
 }
 
@@ -46,6 +47,7 @@
   border: none;
   font-size: 1em;
   padding: 10px;
+  max-width: 280px;
   width: 400px;
   background-color: rgb(147, 149, 150);
   border-radius: 10px;
@@ -61,4 +63,21 @@
 
 .FooterText {
   text-align: center;
+}
+
+@media screen and (max-width:1075px) {
+  .FooterTop {
+    grid-template-columns: 1fr;
+    gap: 2em;
+  }
+}
+
+@media screen and (max-width:600px) {
+  .FooterTop {
+    padding: 2em 1em;
+  }
+
+  .NewsLetter {
+    flex-direction: column;
+  }
 }

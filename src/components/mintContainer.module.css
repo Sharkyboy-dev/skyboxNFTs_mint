@@ -1,13 +1,18 @@
 .MintDiv {
-  /* border: 1px solid rgb(0, 0, 0); */
   padding: 2em 1em;
   min-height: fit-content;
+  display: flex;
+  flex-direction: column;
+}
+
+.MintDiv span {
+  text-align: center;
+  font-size: 6em;
 }
 
 
 
 .ContentContainer {
-  /* border: 1px solid rgb(0, 0, 0); */
   margin: 1em;
   display: flex;
   align-items: center;
@@ -32,6 +37,7 @@
 
 .ContentLeft img {
   width: 400px;
+  max-width: 100%;
   /* height: 450px; */
   border-radius: 1em;
   padding: 10px;
@@ -65,63 +71,42 @@
   border: 1px solid black;
   display: flex;
   flex-direction: column;
-  gap: 1em;
+  gap: 5px;
   background-color: rgba(0, 0, 0, 0.664);
-  border: 4px solid white;
+  border: 4px solid rgb(88, 88, 88);
   padding: 2em 1em;
   border-radius: 1em;
+  color: var(--c5);
 }
 
 .DescDiv span {
-  color: white;
-  font-size: 1.7em;
+  font-size: 2em;
   font-weight: 700;
   text-align: center;
 
 }
 
-.ButtonsContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
-  justify-content: center;
-  align-items: center;
+.DescDiv span:nth-child(1) {
+  text-shadow: 2px 2px 20px var(--c5);
 }
 
-.ButtonsContainer button {
-  width: 20em;
-  font-size: 1.3em;
-  padding: 0.4em 0;
-  border-radius: 10px;
-  border: 4px solid white;
-  color: black;
-  text-transform: uppercase;
-  font-weight: 600;
-}
 
-.ButtonsContainer button:nth-child(1) {
-  background-color: rgba(128, 225, 238, 0.767)
-}
 
-.ButtonsContainer button:nth-child(2) {
-  background-color: rgba(241, 170, 170, 0.767)
-}
 
 .IconsContainer {
   display: flex;
   justify-content: space-around;
-  padding: 1em 0 0 0;
+  padding: 1em;
+  gap: 1.5em;
+  border: 3px solid white;
+  border-radius: 1em;
+  background-color: rgba(0, 0, 0, 0.514);
+
 }
 
 .IconsContainer a {
-  font-size: 3em;
-}
-
-.MintCountBox {
-  background-color: rgb(0, 0, 0);
-  padding: 2em;
-  border-radius: 1em;
-  border: 4px solid white;
+  font-size: 2em;
+  display: flex;
 
 }
 
@@ -131,16 +116,56 @@
 }
 
 .MintPercent {
-  font-size: 1.7em;
+  font-size: 2em;
   font-weight: 700;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  /* border: 3px solid black; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--c5);
+  text-shadow: var(--c5);
 
 }
 
-.Counttext {
+.ContentRight button {
   display: flex;
-  width: 100%;
-  /* border: 1px solid white; */
-  flex-direction: row;
-  align-items: center;
+  width: fit-content;
+  font-size: 3em;
+  font-family: var(--my-font);
+  padding: 0.1em 1em;
+  align-self: center;
+  border-radius: 2em;
+  box-shadow: 0 0 20px rgb(110, 109, 109);
+  border: none;
+  color: black;
+  background: rgb(92, 225, 230);
+  background: linear-gradient(108deg, rgba(92, 225, 230, 1) 0%, rgba(140, 82, 255, 0.5494572829131652) 100%);
+}
 
+@media screen and (max-width:978px) {
+  .ContentContainer {
+    flex-direction: column;
+  }
+
+  .ContentRight {
+    width: 100%;
+    flex-direction: column-reverse;
+  }
+
+
+
+  .MintDiv span {
+    font-size: 3em;
+  }
+}
+
+@media screen and (max-width:600px) {
+  .MintDiv {
+    padding: 2em 0;
+  }
 }

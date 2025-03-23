@@ -8,26 +8,22 @@ const Navbar = () => {
   return (
     <div className={styles.navbarContainer}>
       <div className={styles.Top}>
+        <div></div>
+        <div className={styles.LinkContainer}>
+          <a href="https://sharkyboy.com" target="_blank">
+            Home
+          </a>
+          <a href="/">Mint</a>
+        </div>
         <WalletMultiButton
           style={{
-            background: "rgb(212,166,227)",
             background:
               "linear-gradient(108deg, rgba(212,166,227,1) 0%, rgba(102,182,195,1) 100%)",
             color: "var(--c3)",
-            border: "4px solid black",
+            border: "4px solid var(--c5)",
             borderRadius: "10px",
           }}
         />
-      </div>
-      <div className={styles.Botom}>
-        <a href="/">Home</a>
-        <a href="/">About</a>
-        <a href="/">
-          <img src="/logo.png" alt="" />
-        </a>
-
-        <a href="/">How to Buy</a>
-        <a href="/">FAQs</a>
       </div>
     </div>
   );

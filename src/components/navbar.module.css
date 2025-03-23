@@ -3,32 +3,40 @@
     flex-direction: column;
     gap: 1em;
 
+
 }
 
 .Top {
     /* border: 1px solid black; */
     display: flex;
-    justify-content: right;
     padding: 0 40px;
-}
-
-.Botom {
-    display: flex;
     background-color: black;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding: 1em;
+    border-top: 3px solid white;
+    border-bottom: 3px solid white;
 
 }
 
-.Botom a {
-    font-size: 2em;
+.LinkContainer {
     display: flex;
-    /* border: 1px solid white; */
+    gap: 1em;
     align-items: center;
-    padding: 10px;
-    font-weight: 600;
+    font-size: 2em;
+    color: var(--c5);
 }
 
-.Botom a img {
-    width: 50px;
-    transform: scale(3);
+.LinkContainer a {
+    text-shadow: 2px 2px 20px var(--c5);
+}
+
+@media screen and (max-width:500px) {
+    .Top {
+        padding: 1em 1em;
+    }
+
+    .LinkContainer {
+        font-size: 1.3em;
+    }
+
 }

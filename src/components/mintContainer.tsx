@@ -105,10 +105,76 @@ const MintContainer = () => {
   }
   return (
     <div className={styles.MintDiv}>
+      <span>SHARKYBOY MINT MACHINE</span>
       <div className={styles.ContentContainer}>
         <div className={styles.ContentLeft}>
           <img src="/logoGif.gif" alt="" />
-          <span>100:40:30</span>
+          <div className={styles.IconsContainer}>
+            <a href="https://t.co/2PyAgbMLEj" target="_blank">
+              <FaTelegram />
+            </a>
+            <a href="http://instagram.com/sharkyboy_nft" target="_blank">
+              <FaInstagram />
+            </a>
+            <a href="https://github.com/Sharkyboy-dev" target="_blank">
+              <FaGithub />
+            </a>
+            <a href=" https://x.com/sharkyboy_nft" target="_blank">
+              <FaXTwitter />
+            </a>
+          </div>
+        </div>
+        <div className={styles.ContentRight}>
+          <div className={styles.DescDiv}>
+            <span>Symbol : FIN</span>
+            <span>Description</span>
+            <p>
+              SHARKYBOY THE SHARKYBOY GENESIS COLLECTION IS A LIMITED
+              1,000-PIECE NFT SERIES FEATURING UNIQUE, BATTLE-READY MUTANT
+              SHARKS WITH BOLD DESIGNS, RARE TRAITS, AND LEGENDARY ORIGINS. MORE
+              THAN JUST COLLECTIBLES, THESE NFTS GRANT EXCLUSIVE COMMUNITY
+              PERKS, FUTURE AIRDROPS, AND GOVERNANCE RIGHTS IN THE SHARKYBOY
+              ECOSYSTEM. WITH A MIX OF SAMURAI WARRIORS, STREET LEGENDS, AND
+              HIGH-TECH COMBAT SHARKS, THIS COLLECTION BLENDS STYLE, RARITY, AND
+              INNOVATION INTO A POWERFUL WEBS EXPERIENCE. OWN A PIECE OF THE
+              OCEAN'S FIERCEST WARRIORS-ONCE THEY'RE GONE, THEY'RE GONE FOREVER.
+            </p>
+          </div>
+          <div className={styles.MintCountBox}>
+            <div className={styles.Counttext}>
+              <div
+                style={{
+                  background: "white",
+                  margin: "10px 1em",
+                  height: "60px",
+                  borderRadius: "2em",
+                  padding: "5px",
+                  width: "100%",
+                  position: "relative",
+                }}
+              >
+                <div
+                  style={{
+                    width: `${
+                      (Number(CandyMachine?.itemsRedeemed) /
+                        Number(CandyMachine?.itemsLoaded)) *
+                      100
+                    }%`,
+                    minWidth: "5%",
+                    height: "50px",
+                    borderRadius: "2em",
+
+                    background: "black",
+                  }}
+                />
+
+                <div className={styles.MintPercent}>
+                  {Number(CandyMachine?.itemsRedeemed)}&nbsp; of &nbsp;
+                  {Number(CandyMachine?.itemsLoaded)}
+                </div>
+              </div>
+            </div>
+          </div>
           <button
             onClick={() => createNft(umi.identity.publicKey)}
             disabled={
@@ -119,68 +185,6 @@ const MintContainer = () => {
           >
             {isCMLoading ? "Loading.." : mintingText}
           </button>
-        </div>
-        <div className={styles.ContentRight}>
-          <div className={styles.DescDiv}>
-            <span>OWN THE STORY. SHAPE THE FUTURE. JOIN THE SHARKYGANG.</span>
-
-            <div className={styles.ButtonsContainer}>
-              <button>Origin Story</button>
-              <button>Roadmap</button>
-            </div>
-            <div className={styles.IconsContainer}>
-              <a href="/">
-                <FaTelegram />
-              </a>
-              <a href="/">
-                <FaInstagram />
-              </a>
-
-              <a href="/">
-                <FaXTwitter />
-              </a>
-              <a href="/">
-                <FaDiscord />
-              </a>
-              <a href="/">
-                <FaGithub />
-              </a>
-            </div>
-          </div>
-          <div className={styles.MintCountBox}>
-            <span>Total Mint : </span>
-            <div className={styles.Counttext}>
-              <div
-                style={{
-                  background: "white",
-                  margin: "10px 1em",
-                  height: "30px",
-                  borderRadius: "10px",
-                  padding: "3px",
-                  width: "90%",
-                }}
-              >
-                <div
-                  style={{
-                    width: `${
-                      (Number(CandyMachine?.itemsRedeemed) /
-                        Number(CandyMachine?.itemsLoaded)) *
-                      100
-                    }%`,
-                    minWidth: "2%",
-                    height: "23px",
-                    borderRadius: "10px",
-
-                    background: "black",
-                  }}
-                />
-              </div>
-              <div className={styles.MintPercent}>
-                {Number(CandyMachine?.itemsRedeemed)}&nbsp;/&nbsp;
-                {Number(CandyMachine?.itemsLoaded)}
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>

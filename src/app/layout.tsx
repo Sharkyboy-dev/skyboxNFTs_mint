@@ -5,22 +5,17 @@ import AppWalletProvider from "@/utils/AppWalletProvider";
 import { SolanaBasicContextProvider } from "@/utils/solanaBasicContext";
 import "react-toastify/dist/ReactToastify.css";
 import { Slide, ToastContainer } from "react-toastify";
+import localFont from "next/font/local";
 
-const poppins = Poppins({
-  variable: "--font-popins",
-  subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-});
-
-const rockSalt = Rock_Salt({
-  variable: "--font-rockSalt",
-  subsets: ["latin"],
-  weight: ["400"],
-});
-const tektur = Tektur({
-  variable: "--font-tektur",
-  subsets: ["latin"],
-  weight: ["400"],
+const myFont = localFont({
+  src: [
+    {
+      path: "./zing.otf", // correct path
+      weight: "100",
+      style: "normal",
+    },
+  ],
+  variable: "--my-font", // define the variable if you plan to use it
 });
 
 export const metadata: Metadata = {
@@ -35,9 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${poppins.variable} ${rockSalt.variable} ${tektur.variable}`}
-      >
+      <body className={myFont.variable}>
         <AppWalletProvider>
           <SolanaBasicContextProvider>
             <ToastContainer

@@ -1,0 +1,46 @@
+.aboutContainer {
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4em 0;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.aboutContainer span {
+    background-color: red;
+    font-size: 3em;
+    padding: 7px 1em;
+    align-items: center;
+    text-transform: uppercase;
+    border-radius: 10px;
+    font-weight: 900;
+    color: black;
+}
+
+.description {
+    background-color: aliceblue;
+    color: black;
+    margin: 1em 5em;
+    padding: 2em;
+    border-radius: 1em;
+    font-weight: 700;
+    font-size: 1.2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+}
+
+.description p {
+    text-align: center;
+}
+
+.description ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+}
