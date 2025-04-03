@@ -73,8 +73,8 @@ async function createNft(buyer: any) {
 
     const tx = await txBuilder.sendAndConfirm(umi);
 
-    const signature = bs58.encode(tx.signature);
-    const confirmation = await umi.rpc.confirmTransaction(signature, {
+const confirmation = await umi.rpc.confirmTransaction(tx.signature, {
+
       strategy: {
         type: "blockhash",
         ...(await umi.rpc.getLatestBlockhash()),
