@@ -80,6 +80,18 @@ const confirmation = await umi.rpc.confirmTransaction(tx.signature, {
   },
 });
 
+// Wait a second or two for the NFT to appear on-chain
+await new Promise((resolve) => setTimeout(resolve, 2000));
+
+// Check if the mint address actually exists
+const nftAccount = await umi.rpc.getAccount(nftMint.publicKey);
+
+if (!nftAccount.exists) {
+  toast.error("❌ Mint failed: NFT not created on-chain");
+  console.error("No NFT account found for mint:", nftMint.publicKey.toString());
+  return; // stop here — don’t show success toast
+}
+
 if (confirmation.value.err) {
   toast.error("Mint failed: Not enough SOL or rejected");
   console.error("❌ Transaction failed", confirmation.value.err);
@@ -184,3 +196,4 @@ if (confirmation.value.err) {
 };
 
 export default MintContainer;
+// Confirming NFT mint existence after tx confirmation
