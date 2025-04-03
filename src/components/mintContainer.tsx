@@ -81,9 +81,9 @@ const confirmation = await umi.rpc.confirmTransaction(tx.signature, {
       },
     });
 
-    if (confirmation.result.err) {
+    if (confirmation.err) {
       toast.error("Mint failed: Not enough SOL or rejected");
-      console.error("❌ Transaction failed", confirmation.result.err);
+      console.error("❌ Transaction failed", confirmation.err);
     } else {
       toast.success("✅ Mint successful!");
       setIsCMLoading && setIsCMLoading(true);
