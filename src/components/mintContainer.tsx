@@ -34,95 +34,68 @@ const MintContainer = () => {
 
   const umi = useUmi();
 
-  async function createNft(buyer: any) {
-    if (!CandyMachine || !CandyGuard || !CandyMachine?.publicKey) {
-      return;
-    }
+async function createNft(buyer: any) {
+  if (!CandyMachine || !CandyGuard || !CandyMachine?.publicKey) {
+    return;
+  }
 
-    setMintingText("Minting..");
+  setMintingText("Minting..");
 
-    try {
-      const nftMint = generateSigner(umi);
+  try {
+    const nftMint = generateSigner(umi);
 
-      const groupToUse = CandyGuard?.groups.find(
-        (group) => group.label === "PUBLIC"
+    const groupToUse = CandyGuard?.groups.find(
+      (group) => group.label === "PUBLIC"
+    );
+    const groupPrice = groupToUse?.guards.solPayment;
+    if (groupPrice?.__option !== "Some" || !groupPrice?.value) return;
+
+    const txBuilder = transactionBuilder()
+      .add(setComputeUnitLimit(umi, { units: 1_000_000 }))
+      .add(setComputeUnitPrice(umi, { microLamports: 100_000 }))
+      .add(
+        mintV2(umi, {
+          candyMachine: CandyMachine?.publicKey,
+          candyGuard: CandyGuard?.publicKey,
+          nftMint: nftMint,
+          tokenStandard: TokenStandard.ProgrammableNonFungible,
+          collectionMint: CandyMachine?.collectionMint,
+          collectionUpdateAuthority: publicKey(
+            "finzc9xMFo6F5GqPhJrneMnTsZu5eocJzJTMooBGLgv"
+          ),
+          group: some("PUBLIC"),
+          minter: buyer,
+          mintArgs: {
+            solPayment: groupPrice?.value,
+          },
+        })
       );
-      const groupPrice = groupToUse?.guards.solPayment;
-      if (groupPrice?.__option != "Some" || !groupPrice?.value) return;
 
-      const txBuilder = transactionBuilder()
-  .add(setComputeUnitLimit(umi, { units: 1_000_000 }))
-  .add(setComputeUnitPrice(umi, { microLamports: 100_000 }))
-  .add(
-    mintV2(umi, {
-      candyMachine: CandyMachine?.publicKey,
-      candyGuard: CandyGuard?.publicKey,
-      nftMint: nftMint,
-      tokenStandard: TokenStandard.ProgrammableNonFungible,
-      collectionMint: CandyMachine?.collectionMint,
-      collectionUpdateAuthority: publicKey(
-        "finzc9xMFo6F5GqPhJrneMnTsZu5eocJzJTMooBGLgv"
-      ),
-      group: some("PUBLIC"),
-      minter: buyer,
-      mintArgs: {
-        solPayment: groupPrice?.value,
+    const tx = await txBuilder.sendAndConfirm(umi);
+
+    const signature = bs58.encode(tx.signature);
+    const confirmation = await umi.rpc.confirmTransaction(signature, {
+      strategy: {
+        type: "blockhash",
+        ...(await umi.rpc.getLatestBlockhash()),
       },
-    })
-  );
+    });
 
-const tx = await txBuilder.sendAndConfirm(umi);
-
-// ⛓️ Confirm the transaction result
-const signature = bs58.encode(tx.signature);
-const confirmation = await umi.rpc.confirmTransaction(signature, {
-  strategy: {
-    type: "blockhash",
-    ...(await umi.rpc.getLatestBlockhash()),
-  },
-});
-
-if (confirmation.result.err) {
-  toast.error("Mint failed: Not enough SOL or rejected");
-  console.error("❌ Transaction failed", confirmation.result.err);
-} else {
-  toast.success("✅ Mint successful!");
-  setIsCMLoading && setIsCMLoading(true);
+    if (confirmation.result.err) {
+      toast.error("Mint failed: Not enough SOL or rejected");
+      console.error("❌ Transaction failed", confirmation.result.err);
+    } else {
+      toast.success("✅ Mint successful!");
+      setIsCMLoading && setIsCMLoading(true);
+    }
+  } catch (error) {
+    console.error("Error during mint:", error);
+    toast.error("Transaction failed or rejected by wallet");
+  } finally {
+    setMintingText("Mint Now");
+  }
 }
 
-        .sendAndConfirm(umi);
-
-      // toast.info("Minting Tx sent");
-
-      // let buildTx = await tx.buildWithLatestBlockhash(umi);
-      // console.log("Build Tx", buildTx);
-      // buildTx = await umi.identity.signTransaction(buildTx);
-      // const signature = await umi.rpc.sendTransaction(buildTx, {
-      //   commitment: "finalized",
-      //   skipPreflight: true,
-      // });
-      // console.log(bs58.encode(signature));
-
-      // const confirmTx = await umi.rpc.confirmTransaction(signature, {
-      //   strategy: {
-      //     type: "blockhash",
-      //     ...(await umi.rpc.getLatestBlockhash()),
-      //   },
-      // });
-
-      // console.log("confirmg tx");
-      // console.log("confirmTx", confirmTx);
-      if (tx) {
-        toast.success("Transaction confirmed");
-        setIsCMLoading && setIsCMLoading(true);
-      }
-    } catch (error) {
-      setIsCMLoading && setIsCMLoading(true);
-      toast.error("Tx failed");
-    } finally {
-      setMintingText("Mint Now");
-    }
-  }
   return (
     <div className={styles.MintDiv}>
       <span>SHARKYBOY MINT MACHINE</span>
