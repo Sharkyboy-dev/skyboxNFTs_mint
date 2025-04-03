@@ -50,26 +50,46 @@ const MintContainer = () => {
       const groupPrice = groupToUse?.guards.solPayment;
       if (groupPrice?.__option != "Some" || !groupPrice?.value) return;
 
-      const tx = await transactionBuilder()
-        .add(setComputeUnitLimit(umi, { units: 1_000_000 }))
-        .add(setComputeUnitPrice(umi, { microLamports: 100_000 }))
-        .add(
-          mintV2(umi, {
-            candyMachine: CandyMachine?.publicKey,
-            candyGuard: CandyGuard?.publicKey,
-            nftMint: nftMint,
-            tokenStandard: TokenStandard.ProgrammableNonFungible,
-            collectionMint: CandyMachine?.collectionMint,
-            collectionUpdateAuthority: publicKey(
-              "finzc9xMFo6F5GqPhJrneMnTsZu5eocJzJTMooBGLgv"
-            ),
-            group: some("PUBLIC"),
-            minter: buyer,
-            mintArgs: {
-              solPayment: groupPrice?.value,
-            },
-          })
-        )
+      const txBuilder = transactionBuilder()
+  .add(setComputeUnitLimit(umi, { units: 1_000_000 }))
+  .add(setComputeUnitPrice(umi, { microLamports: 100_000 }))
+  .add(
+    mintV2(umi, {
+      candyMachine: CandyMachine?.publicKey,
+      candyGuard: CandyGuard?.publicKey,
+      nftMint: nftMint,
+      tokenStandard: TokenStandard.ProgrammableNonFungible,
+      collectionMint: CandyMachine?.collectionMint,
+      collectionUpdateAuthority: publicKey(
+        "finzc9xMFo6F5GqPhJrneMnTsZu5eocJzJTMooBGLgv"
+      ),
+      group: some("PUBLIC"),
+      minter: buyer,
+      mintArgs: {
+        solPayment: groupPrice?.value,
+      },
+    })
+  );
+
+const tx = await txBuilder.sendAndConfirm(umi);
+
+// ⛓️ Confirm the transaction result
+const signature = bs58.encode(tx.signature);
+const confirmation = await umi.rpc.confirmTransaction(signature, {
+  strategy: {
+    type: "blockhash",
+    ...(await umi.rpc.getLatestBlockhash()),
+  },
+});
+
+if (confirmation.result.err) {
+  toast.error("Mint failed: Not enough SOL or rejected");
+  console.error("❌ Transaction failed", confirmation.result.err);
+} else {
+  toast.success("✅ Mint successful!");
+  setIsCMLoading && setIsCMLoading(true);
+}
+
         .sendAndConfirm(umi);
 
       // toast.info("Minting Tx sent");
