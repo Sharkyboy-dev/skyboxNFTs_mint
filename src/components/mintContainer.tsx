@@ -74,20 +74,19 @@ async function createNft(buyer: any) {
     const tx = await txBuilder.sendAndConfirm(umi);
 
 const confirmation = await umi.rpc.confirmTransaction(tx.signature, {
+  strategy: {
+    type: "blockhash",
+    ...(await umi.rpc.getLatestBlockhash()),
+  },
+});
 
-      strategy: {
-        type: "blockhash",
-        ...(await umi.rpc.getLatestBlockhash()),
-      },
-    });
-
-    if (confirmation.err) {
-      toast.error("Mint failed: Not enough SOL or rejected");
-      console.error("❌ Transaction failed", confirmation.err);
-    } else {
-      toast.success("✅ Mint successful!");
-      setIsCMLoading && setIsCMLoading(true);
-    }
+if (confirmation.value.err) {
+  toast.error("Mint failed: Not enough SOL or rejected");
+  console.error("❌ Transaction failed", confirmation.value.err);
+} else {
+  toast.success("✅ Mint successful!");
+  setIsCMLoading && setIsCMLoading(true);
+}
   } catch (error) {
     console.error("Error during mint:", error);
     toast.error("Transaction failed or rejected by wallet");
