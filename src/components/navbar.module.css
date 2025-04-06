@@ -10,6 +10,7 @@
   border-top: 3px solid white;
   border-bottom: 3px solid white;
   font-family: 'Orbitron', sans-serif;
+  padding: 0.3em 0;
 }
 
 .Top {
@@ -18,14 +19,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1em 2em;
-  gap: 2rem;
+  padding: 0.8em 1em;
+  gap: 1.5rem;
   flex-wrap: nowrap;
 }
 
 .LinkContainer {
   display: flex;
-  gap: 1.5em;
+  gap: 1.2em;
   align-items: center;
   font-size: 1.8em;
   color: var(--c5);
@@ -68,25 +69,29 @@
   .Top {
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
-    padding: 1em 1em;
+    gap: 0.5rem;
+    padding: 0.5em 1em;
     text-align: center;
   }
 
   .LinkContainer {
     justify-content: center;
     flex-wrap: wrap;
-    gap: 1em;
-    font-size: 1.3em;
+    gap: 0.8em;
+    font-size: 1.2em;
   }
 
   .LinkContainer a {
-    padding: 0.25em 0.5em;
+    padding: 0.2em 0.4em;
   }
 
   .WalletWrapper {
     justify-content: center;
     width: 100%;
     min-width: unset;
+  }
+
+  .navbarContainer {
+    padding: 0.2em 0;
   }
 }
