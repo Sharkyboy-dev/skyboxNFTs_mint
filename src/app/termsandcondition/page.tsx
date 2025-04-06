@@ -37,7 +37,12 @@ const TermsAndConditions = () => {
             https://sharkyboy.com
           </a>
         </p>
-        <p><strong>Contact:</strong> dev@sharkyboy.com</p>
+        <p>
+          <strong>Contact:</strong>{" "}
+          <a href="mailto:dev@sharkyboy.com" style={{ color: "#0ff" }}>
+            dev@sharkyboy.com
+          </a>
+        </p>
 
         <p>
           Please read these Terms and Conditions (“Terms”) carefully before using the SharkyBoy NFT website and services.
@@ -89,7 +94,7 @@ const TermsAndConditions = () => {
 
         <h2>8. Intellectual Property</h2>
         <p>
-          All content (logos, art, text) belongs to SharkyBoy and cannot be reused without permission.
+          All content on the site, including logos, artwork, text, and branding, is the intellectual property of SharkyBoy and may not be reused without permission.
         </p>
 
         <h2>9. Termination</h2>
@@ -104,7 +109,7 @@ const TermsAndConditions = () => {
 
         <h2>11. Contact</h2>
         <p>
-          For questions, contact us: 📧{" "}
+          If you have any questions or concerns about these Terms, please contact us: 📧{" "}
           <a href="mailto:dev@sharkyboy.com" style={{ color: "#0ff" }}>
             dev@sharkyboy.com
           </a>
