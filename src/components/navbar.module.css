@@ -1,42 +1,57 @@
 .navbarContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-
-
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
 }
 
 .Top {
-    /* border: 1px solid black; */
-    display: flex;
-    padding: 0 40px;
-    background-color: black;
-    justify-content: space-between;
-    padding: 1em;
-    border-top: 3px solid white;
-    border-bottom: 3px solid white;
-
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em 2em;
+  background-color: black;
+  border-top: 3px solid white;
+  border-bottom: 3px solid white;
+  flex-wrap: wrap;
 }
 
 .LinkContainer {
-    display: flex;
-    gap: 1em;
-    align-items: center;
-    font-size: 2em;
-    color: var(--c5);
+  display: flex;
+  gap: 1.5em;
+  align-items: center;
+  font-size: 2em;
+  color: var(--c5);
+  flex: 1;
 }
 
 .LinkContainer a {
-    text-shadow: 2px 2px 20px var(--c5);
+  text-shadow: 2px 2px 20px var(--c5);
+  text-decoration: none;
+  color: inherit;
 }
 
-@media screen and (max-width:500px) {
-    .Top {
-        padding: 1em 1em;
-    }
+.WalletWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 1;
+  min-width: 200px;
+}
 
-    .LinkContainer {
-        font-size: 1.3em;
-    }
+@media screen and (max-width: 500px) {
+  .Top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1em 1em;
+  }
 
+  .LinkContainer {
+    font-size: 1.3em;
+  }
+
+  .WalletWrapper {
+    justify-content: flex-start;
+    width: 100%;
+  }
 }
