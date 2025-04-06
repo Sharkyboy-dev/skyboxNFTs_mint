@@ -1,170 +1,197 @@
-"use client";
-import React, { useState } from "react";
-import styles from "./mintContainer.module.css";
-import { useCandyMachine } from "@/utils/solanaBasicContext";
-import { useUmi } from "@/utils/useUmi";
-import { dummyPublicKey } from "@/utils/AppWalletProvider";
-import {
-  generateSigner,
-  publicKey,
-  sol,
-  some,
-  transactionBuilder,
-} from "@metaplex-foundation/umi";
-import {
-  setComputeUnitLimit,
-  setComputeUnitPrice,
-} from "@metaplex-foundation/mpl-toolbox";
-import { mintV2 } from "@metaplex-foundation/mpl-candy-machine";
-import { TokenStandard } from "@metaplex-foundation/mpl-token-metadata";
-import { toast } from "react-toastify";
-import bs58 from "bs58";
-import {
-  FaDiscord,
-  FaFacebook,
-  FaGithub,
-  FaInstagram,
-  FaTelegram,
-  FaXTwitter,
-} from "react-icons/fa6";
+.MintDiv {
+  padding: 7rem 1em 2em;
+  min-height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
 
-const MintContainer = () => {
-  const { CandyMachine, CandyGuard, isCMLoading, setIsCMLoading } =
-    useCandyMachine();
-  const [mintingText, setMintingText] = useState("Mint Now");
-  const umi = useUmi();
+.MintDiv span {
+  text-align: center;
+  font-size: 6em;
+}
 
-  const redeemed = Number(CandyMachine?.itemsRedeemed || 0);
-  const total = Number(CandyMachine?.itemsLoaded || 1);
-  const percentage = (redeemed / total) * 100;
+.ContentContainer {
+  margin: 1em;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
 
-  async function createNft(buyer: any) {
-    if (!CandyMachine || !CandyGuard || !CandyMachine?.publicKey) {
-      return;
-    }
+.ContentLeft {
+  max-width: 500px;
+  border: 4px solid rgb(77, 77, 77);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+  padding: 1.5em;
+  background-color: rgba(0, 0, 0, 0.664);
+  border-radius: 1em;
+}
 
-    setMintingText("Minting..");
+.ContentLeft img {
+  width: 400px;
+  max-width: 100%;
+  border-radius: 1em;
+  padding: 10px;
+  box-shadow: 0 0 15px white;
+}
 
-    try {
-      const nftMint = generateSigner(umi);
+.ContentLeft span {
+  font-size: 2em;
+  color: white;
+}
 
-      const groupToUse = CandyGuard?.groups.find(
-        (group) => group.label === "PUBLIC"
-      );
-      const groupPrice = groupToUse?.guards.solPayment;
-      if (groupPrice?.__option !== "Some" || !groupPrice?.value) return;
+.ContentLeft button {
+  color: black;
+  background-color: var(--c4);
+  font-size: 2em;
+  padding: 10px 2em;
+  border-radius: 10px;
+  border: 4px solid white;
+}
 
-      const txBuilder = transactionBuilder()
-        .add(setComputeUnitLimit(umi, { units: 1_000_000 }))
-        .add(setComputeUnitPrice(umi, { microLamports: 100_000 }))
-        .add(
-          mintV2(umi, {
-            candyMachine: CandyMachine?.publicKey,
-            candyGuard: CandyGuard?.publicKey,
-            nftMint: nftMint,
-            tokenStandard: TokenStandard.ProgrammableNonFungible,
-            collectionMint: CandyMachine?.collectionMint,
-            collectionUpdateAuthority: publicKey(
-              "finzc9xMFo6F5GqPhJrneMnTsZu5eocJzJTMooBGLgv"
-            ),
-            group: some("PUBLIC"),
-            minter: buyer,
-            mintArgs: {
-              solPayment: groupPrice?.value,
-            },
-          })
-        );
+.ContentRight {
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2em;
+}
 
-      const tx = await txBuilder.sendAndConfirm(umi);
+.DescDiv {
+  width: 100%;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background-color: rgba(0, 0, 0, 0.664);
+  border: 4px solid rgb(88, 88, 88);
+  padding: 2em 1em;
+  border-radius: 1em;
+  color: var(--c5);
+}
 
-      const confirmation = await umi.rpc.confirmTransaction(tx.signature, {
-        strategy: {
-          type: "blockhash",
-          ...(await umi.rpc.getLatestBlockhash()),
-        },
-      });
+.DescDiv span {
+  font-size: 2em;
+  font-weight: 700;
+  text-align: center;
+}
 
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      const nftAccount = await umi.rpc.getAccount(nftMint.publicKey);
+.DescDiv span:nth-child(1) {
+  text-shadow: 2px 2px 20px var(--c5);
+}
 
-      if (!nftAccount.exists) {
-        toast.error("❌ Mint failed: NFT not created on-chain");
-        console.error("No NFT account found for mint:", nftMint.publicKey.toString());
-        return;
-      }
+.IconsContainer {
+  display: flex;
+  justify-content: space-around;
+  padding: 1em;
+  gap: 1.5em;
+  border: 3px solid white;
+  border-radius: 1em;
+  background-color: rgba(0, 0, 0, 0.514);
+}
 
-      if (confirmation.value.err) {
-        toast.error("Mint failed: Not enough SOL or rejected");
-        console.error("❌ Transaction failed", confirmation.value.err);
-      } else {
-        toast.success("✅ Mint successful!");
-        setIsCMLoading && setIsCMLoading(true);
-      }
-    } catch (error) {
-      console.error("Error during mint:", error);
-      toast.error("Transaction failed or rejected by wallet");
-    } finally {
-      setMintingText("Mint Now");
-    }
+.IconsContainer a {
+  font-size: 2em;
+  display: flex;
+}
+
+.MintCountBox {
+  width: 100%;
+  position: relative;
+  height: 60px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  border-radius: 2em;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.MintProgressFill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  border-radius: 2em;
+  z-index: 1;
+  background-color: #0af;
+  animation: growBar 1.5s ease-out forwards;
+  width: var(--progress-width);
+}
+
+.MintProgressFill.low {
+  background-color: #0af;
+}
+.MintProgressFill.medium {
+  background-color: orange;
+}
+.MintProgressFill.high {
+  background-color: red;
+}
+
+@keyframes growBar {
+  from {
+    width: 0;
+  }
+  to {
+    width: var(--progress-width);
+  }
+}
+
+.MintPercent {
+  font-size: 2em;
+  font-weight: 700;
+  position: relative;
+  z-index: 2;
+  color: var(--c5);
+  text-shadow: 0 0 10px var(--c5);
+}
+
+.ContentRight button {
+  display: flex;
+  width: fit-content;
+  font-size: 3em;
+  font-family: var(--my-font);
+  padding: 0.1em 1em;
+  align-self: center;
+  border-radius: 2em;
+  box-shadow: 0 0 20px rgb(110, 109, 109);
+  border: none;
+  color: black;
+  cursor: pointer;
+  background: linear-gradient(
+    108deg,
+    rgba(92, 225, 230, 1) 0%,
+    rgba(140, 82, 255, 0.5494572829131652) 100%
+  );
+}
+
+@media screen and (max-width: 978px) {
+  .ContentContainer {
+    flex-direction: column;
+    align-items: center;
   }
 
-  return (
-    <div className={styles.MintContentWrapper}>
-      <div className={styles.MintDiv}>
-        <span>SHARKYBOY MINT MACHINE</span>
-        <div className={styles.ContentContainer}>
-          <div className={styles.ContentLeft}>
-            <img src="/logoGif.gif" alt="" />
-            <div className={styles.IconsContainer}>
-              <a href="https://t.co/2PyAgbMLEj" target="_blank">
-                <FaTelegram />
-              </a>
-              <a href="http://instagram.com/sharkyboy_nft" target="_blank">
-                <FaInstagram />
-              </a>
-              <a href="https://github.com/Sharkyboy-dev" target="_blank">
-                <FaGithub />
-              </a>
-              <a href="https://x.com/sharkyboy_nft" target="_blank">
-                <FaXTwitter />
-              </a>
-            </div>
-          </div>
+  .ContentRight {
+    width: 100%;
+    flex-direction: column-reverse;
+  }
 
-          <div className={styles.ContentRight}>
-            <div className={styles.DescDiv}>
-              <span>Symbol : FIN</span>
-              <span>Description</span>
-              <p>
-                SHARKYBOY THE SHARKYBOY GENESIS COLLECTION IS A LIMITED 1,000-PIECE NFT SERIES FEATURING UNIQUE, BATTLE-READY MUTANT SHARKS WITH BOLD DESIGNS, RARE TRAITS, AND LEGENDARY ORIGINS. MORE THAN JUST COLLECTIBLES, THESE NFTS GRANT EXCLUSIVE COMMUNITY PERKS, FUTURE AIRDROPS, AND GOVERNANCE RIGHTS IN THE SHARKYBOY ECOSYSTEM. WITH A MIX OF SAMURAI WARRIORS, STREET LEGENDS, AND HIGH-TECH COMBAT SHARKS, THIS COLLECTION BLENDS STYLE, RARITY, AND INNOVATION INTO A POWERFUL WEBS EXPERIENCE. OWN A PIECE OF THE OCEAN'S FIERCEST WARRIORS-ONCE THEY'RE GONE, THEY'RE GONE FOREVER.
-              </p>
-            </div>
-            <div className={styles.MintCountBox}>
-              <div
-                className={`${styles.MintProgressFill} ${
-                  percentage < 33 ? styles.low : percentage < 66 ? styles.medium : styles.high
-                }`}
-                style={{ "--progress-width": `${percentage}%` } as React.CSSProperties}
-              />
-              <div className={styles.MintPercent}>
-                {redeemed} of {total}
-              </div>
-            </div>
-            <button
-              onClick={() => createNft(umi.identity.publicKey)}
-              disabled={
-                isCMLoading ||
-                mintingText !== "Mint Now" ||
-                umi.identity.publicKey === dummyPublicKey
-              }
-            >
-              {isCMLoading ? "Loading.." : mintingText}
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
+  .MintDiv span {
+    font-size: 3em;
+  }
+}
 
-export default MintContainer;
+@media screen and (max-width: 600px) {
+  .MintDiv {
+    padding: 6rem 0 2em;
+  }
+}
