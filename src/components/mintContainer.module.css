@@ -164,6 +164,12 @@
   z-index: 2;
 }
 
+.MintPercent.nearFull::after {
+  content: " 🦈🔥";
+  margin-left: 0.5rem;
+  font-size: 0.9em;
+}
+
 .ContentRight button {
   display: flex;
   width: fit-content;
@@ -181,6 +187,31 @@
     rgba(92, 225, 230, 1) 0%,
     rgba(140, 82, 255, 0.549) 100%
   );
+  transition: transform 0.3s ease;
+}
+
+.ContentRight button.minting {
+  animation: pulseMint 1s infinite;
+  transform: scale(1.02);
+}
+
+@keyframes pulseMint {
+  0% {
+    box-shadow: 0 0 0px rgba(255, 255, 255, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.9);
+  }
+  100% {
+    box-shadow: 0 0 0px rgba(255, 255, 255, 0.5);
+  }
+}
+
+.MintDiv.soldOut {
+  opacity: 0.4;
+  pointer-events: none;
+  filter: grayscale(0.7);
+  transition: all 0.5s ease-in-out;
 }
 
 @media screen and (max-width: 978px) {
