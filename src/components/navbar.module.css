@@ -66,15 +66,23 @@
     align-items: center;
     gap: 1rem;
     padding: 1em 1em;
+    text-align: center;
   }
 
   .LinkContainer {
     justify-content: center;
+    flex-wrap: wrap;
+    gap: 1em;
     font-size: 1.3em;
+  }
+
+  .LinkContainer a {
+    padding: 0.25em 0.5em;
   }
 
   .WalletWrapper {
     justify-content: center;
     width: 100%;
+    min-width: unset;
   }
 }
