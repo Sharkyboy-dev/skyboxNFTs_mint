@@ -110,11 +110,42 @@
   position: relative;
   height: 60px;
   margin-bottom: 1rem;
+  overflow: hidden;
+  border-radius: 2em;
+  background: white;
 }
 
-.MintCountBox span {
-  font-size: 1.7em;
-  font-weight: 700;
+.MintProgressFill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  border-radius: 2em;
+  z-index: 1;
+  animation: growBar 1.5s ease-out forwards;
+  width: var(--progress-width);
+  background-color: #0af;
+}
+
+.MintProgressFill.low {
+  background-color: #0af;
+}
+
+.MintProgressFill.medium {
+  background-color: orange;
+}
+
+.MintProgressFill.high {
+  background-color: red;
+}
+
+@keyframes growBar {
+  from {
+    width: 0;
+  }
+  to {
+    width: var(--progress-width);
+  }
 }
 
 .MintPercent {
@@ -130,6 +161,7 @@
   color: var(--c5);
   text-shadow: 0 0 10px var(--c5);
   pointer-events: none;
+  z-index: 2;
 }
 
 .ContentRight button {
@@ -147,7 +179,7 @@
   background: linear-gradient(
     108deg,
     rgba(92, 225, 230, 1) 0%,
-    rgba(140, 82, 255, 0.5494572829131652) 100%
+    rgba(140, 82, 255, 0.549) 100%
   );
 }
 
