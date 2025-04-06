@@ -27,6 +27,8 @@
   flex-direction: column;
   gap: 0.5rem;
   font-size: 0.9rem;
+  align-items: center;
+  text-align: center;
 }
 
 .FooterLinksBox span {
@@ -41,6 +43,8 @@
   gap: 1rem;
   margin-top: 0.5rem;
   font-size: 1.4rem;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .Icons a {
@@ -57,6 +61,8 @@
   display: flex;
   gap: 0.5rem;
   margin-top: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .NewsLetter input {
@@ -66,7 +72,8 @@
   border: none;
   border-radius: 6px;
   font-size: 0.85rem;
-  flex: 1;
+  flex: 1 1 200px;
+  max-width: 300px;
 }
 
 .NewsLetter button {
@@ -91,4 +98,26 @@
   padding-top: 1rem;
   width: 100%;
   margin-top: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+  .FooterTop {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+  }
+
+  .FooterLinksBox {
+    align-items: center;
+    text-align: center;
+  }
+
+  .Icons {
+    justify-content: center;
+  }
+
+  .NewsLetter {
+    justify-content: center;
+  }
 }
