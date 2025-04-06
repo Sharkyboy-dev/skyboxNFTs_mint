@@ -44,10 +44,11 @@
 .bubble {
   position: absolute;
   border-radius: 50%;
-  background: rgba(0, 255, 255, 0.15);
-  box-shadow: 0 0 25px rgba(0, 255, 255, 0.9), 0 0 50px rgba(0, 255, 255, 0.5);
-  animation: rise 20s linear infinite;
-  z-index: 1;
+  background: rgba(0, 255, 255, 0.2);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.7), 0 0 40px rgba(0, 255, 255, 0.4);
+  animation: rise 25s linear infinite;
+  z-index: 3; /* Make sure bubbles float above Hero */
+  pointer-events: none;
 }
 
 @keyframes rise {
