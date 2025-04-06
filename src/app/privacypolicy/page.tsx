@@ -24,13 +24,12 @@ const PrivacyPolicy = () => {
           width: "100%",
           boxShadow: "0 0 15px #0ff",
           backgroundColor: "rgba(0, 0, 0, 0.85)",
-          textAlign: "left",
         }}
       >
-        <h1 style={{ fontSize: "2.2em", marginBottom: "0.5rem", color: "#0ff", textAlign: "center" }}>
+        <h1 style={{ fontSize: "2.2em", marginBottom: "0.5rem", color: "#0ff" }}>
           PRIVACY POLICY FOR SHARKYBOY NFTs
         </h1>
-        <p style={{ fontStyle: "italic", textAlign: "center", marginBottom: "2rem" }}>Effective Date: 03/01/2025</p>
+        <p style={{ fontStyle: "italic", marginBottom: "2rem" }}>Effective Date: 03/01/2025</p>
 
         <p>
           At SharkyBoy NFTs, we are committed to protecting your privacy and ensuring the safety of your personal
@@ -40,7 +39,7 @@ const PrivacyPolicy = () => {
 
         <h2>1. Information We Collect</h2>
         <p>We only collect limited user data necessary to facilitate interactions on the blockchain. This includes:</p>
-        <ul>
+        <ul style={{ listStyleType: "none", padding: 0 }}>
           <li><strong>Public Wallet Address:</strong> When you connect your wallet (e.g., Phantom, Solflare, Backpack), we store your public wallet address to identify ownership of NFTs and facilitate transactions.</li>
           <li><strong>Transaction Data:</strong> We may collect transaction data related to NFT minting and purchases for tracking mint counts and ownership records.</li>
           <li><strong>Usage Data:</strong> Non-identifiable site analytics such as browser type, device, and time spent on the site, collected via tools like Google Analytics.</li>
@@ -48,7 +47,7 @@ const PrivacyPolicy = () => {
         <p><em>Note: We do <strong>not</strong> collect personal information such as your name, email, or payment card details.</em></p>
 
         <h2>2. How We Use Your Information</h2>
-        <ul>
+        <ul style={{ listStyleType: "none", padding: 0 }}>
           <li>To facilitate the minting and purchase of SharkyBoy NFTs</li>
           <li>To display your owned NFTs</li>
           <li>To track minting progress and supply</li>
