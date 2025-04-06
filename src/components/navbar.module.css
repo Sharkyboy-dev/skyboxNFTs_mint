@@ -19,16 +19,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.8em 1em;
-  gap: 1.5rem;
+  padding: 0.6em 1em;
+  gap: 1rem;
   flex-wrap: nowrap;
 }
 
 .LinkContainer {
   display: flex;
-  gap: 1.2em;
+  gap: 1em;
   align-items: center;
-  font-size: 1.8em;
+  font-size: 1.6em;
   color: var(--c5);
   flex: 1;
 }
@@ -42,6 +42,7 @@
   letter-spacing: 1px;
   animation: pulseTextGlow 2.5s ease-in-out infinite;
   transition: transform 0.3s ease;
+  white-space: nowrap;
 }
 
 .LinkContainer a:hover {
@@ -62,33 +63,32 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  min-width: 150px;
+  min-width: auto;
+  margin-left: auto;
 }
 
 @media screen and (max-width: 768px) {
   .Top {
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
     gap: 0.5rem;
-    padding: 0.5em 1em;
-    text-align: center;
+    padding: 0.4em 1em;
   }
 
   .LinkContainer {
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 0.8em;
+    flex: none;
     font-size: 1.2em;
-  }
-
-  .LinkContainer a {
-    padding: 0.2em 0.4em;
+    gap: 0.7em;
   }
 
   .WalletWrapper {
-    justify-content: center;
-    width: 100%;
-    min-width: unset;
+    flex: none;
+    margin-left: auto;
+    justify-content: flex-end;
+  }
+
+  .LinkContainer a {
+    padding: 0.1em 0.4em;
   }
 
   .navbarContainer {
