@@ -1,75 +1,125 @@
-.Maincontainer {
-  min-height: 100vh;
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap');
+
+.FooterContainer {
+  background-color: #000;
+  color: #fff;
+  font-family: 'Orbitron', sans-serif;
+  padding: 2rem 1rem 1rem;
+  border-top: 1px solid #333;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  position: relative;
-  z-index: 2;
-}
-
-.HeroCOntainer {
-  flex: 1;
-  display: flex;
   align-items: center;
+  width: 100%;
+}
+
+.FooterTop {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+  max-width: 1200px;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.FooterLinksBox {
+  flex: 1;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  align-items: center;
+  text-align: center;
+}
+
+.FooterLinksBox span {
+  font-weight: 700;
+  color: #d4af37;
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+}
+
+.Icons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  font-size: 1.4rem;
   justify-content: center;
-  background-image: url('/bg.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  background-color: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(1px);
+  flex-wrap: wrap;
 }
 
-/* BUBBLE ANIMATION BACKGROUND */
-.bubbleBackground {
-  position: relative;
+.Icons a {
+  color: #fff;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.Icons a:hover {
+  transform: scale(1.2);
+  color: #d4af37;
+}
+
+.NewsLetter {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.NewsLetter input {
+  padding: 0.5rem 1rem;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  flex: 1 1 200px;
+  max-width: 300px;
+}
+
+.NewsLetter button {
+  padding: 0.5rem 1rem;
+  background-color: #d4af37;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.NewsLetter button:hover {
+  background-color: #b5942c;
+}
+
+.FooterText {
+  font-size: 0.75rem;
+  text-align: center;
+  color: #888;
+  border-top: 1px solid #222;
+  padding-top: 1rem;
   width: 100%;
-  min-height: 100vh;
-  overflow: hidden;
-  z-index: 0;
+  margin-top: 1rem;
 }
 
-.bubbleBackground::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.07) 0%, transparent 70%),
-              radial-gradient(circle at 80% 80%, rgba(255,255,255,0.03) 0%, transparent 70%);
-  animation: float-bubbles 30s linear infinite;
-  z-index: 1;
-}
+@media screen and (max-width: 768px) {
+  .FooterTop {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+  }
 
-.bubble {
-  position: absolute;
-  border-radius: 50%;
-  background: rgba(0, 255, 255, 0.2);
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.7), 0 0 40px rgba(0, 255, 255, 0.4);
-  animation: rise 25s linear infinite;
-  z-index: 3; /* Make sure bubbles float above Hero */
-  pointer-events: none;
-}
+  .FooterLinksBox {
+    align-items: center;
+    text-align: center;
+  }
 
-@keyframes rise {
-  0% {
-    transform: translateY(100vh) scale(0.5);
-    opacity: 0;
+  .Icons {
+    justify-content: center;
   }
-  25% {
-    opacity: 0.5;
-  }
-  50% {
-    transform: translateY(0vh) scale(1);
-    opacity: 0.7;
-  }
-  100% {
-    transform: translateY(-150vh) scale(1.2);
-    opacity: 0;
-  }
-}
 
-@keyframes float-bubbles {
-  0% { background-position: 0 0; }
-  100% { background-position: 0 -1000px; }
+  .NewsLetter {
+    justify-content: center;
+  }
 }
