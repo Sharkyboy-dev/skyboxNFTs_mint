@@ -2,17 +2,22 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  margin: auto;
+  justify-content: space-between; /* ensures footer goes to the bottom */
   position: relative;
-  z-index: 2; /* content above bubbles */
+  z-index: 2;
 }
 
 .HeroCOntainer {
+  flex: 1; /* take up all vertical space before the footer */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-image: url('/bg.png');
   background-repeat: no-repeat;
   background-size: cover;
-  background-color: rgba(0, 0, 0, 0.6); /* Optional: dark overlay for contrast */
-  backdrop-filter: blur(1px);          /* Optional: slight blur for depth */
+  background-position: center;
+  background-color: rgba(0, 0, 0, 0.6); /* Optional overlay */
+  backdrop-filter: blur(1px); /* Optional blur */
 }
 
 /* BUBBLE ANIMATION BACKGROUND */
