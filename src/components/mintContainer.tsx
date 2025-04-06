@@ -27,168 +27,157 @@ import {
   FaTelegram,
   FaXTwitter,
 } from "react-icons/fa6";
+
 const MintContainer = () => {
   const { CandyMachine, CandyGuard, isCMLoading, setIsCMLoading } =
     useCandyMachine();
   const [mintingText, setMintingText] = useState("Mint Now");
-
   const umi = useUmi();
 
-async function createNft(buyer: any) {
-  if (!CandyMachine || !CandyGuard || !CandyMachine?.publicKey) {
-    return;
-  }
+  async function createNft(buyer: any) {
+    if (!CandyMachine || !CandyGuard || !CandyMachine?.publicKey) {
+      return;
+    }
 
-  setMintingText("Minting..");
+    setMintingText("Minting..");
 
-  try {
-    const nftMint = generateSigner(umi);
+    try {
+      const nftMint = generateSigner(umi);
 
-    const groupToUse = CandyGuard?.groups.find(
-      (group) => group.label === "PUBLIC"
-    );
-    const groupPrice = groupToUse?.guards.solPayment;
-    if (groupPrice?.__option !== "Some" || !groupPrice?.value) return;
-
-    const txBuilder = transactionBuilder()
-      .add(setComputeUnitLimit(umi, { units: 1_000_000 }))
-      .add(setComputeUnitPrice(umi, { microLamports: 100_000 }))
-      .add(
-        mintV2(umi, {
-          candyMachine: CandyMachine?.publicKey,
-          candyGuard: CandyGuard?.publicKey,
-          nftMint: nftMint,
-          tokenStandard: TokenStandard.ProgrammableNonFungible,
-          collectionMint: CandyMachine?.collectionMint,
-          collectionUpdateAuthority: publicKey(
-            "finzc9xMFo6F5GqPhJrneMnTsZu5eocJzJTMooBGLgv"
-          ),
-          group: some("PUBLIC"),
-          minter: buyer,
-          mintArgs: {
-            solPayment: groupPrice?.value,
-          },
-        })
+      const groupToUse = CandyGuard?.groups.find(
+        (group) => group.label === "PUBLIC"
       );
+      const groupPrice = groupToUse?.guards.solPayment;
+      if (groupPrice?.__option !== "Some" || !groupPrice?.value) return;
 
-    const tx = await txBuilder.sendAndConfirm(umi);
+      const txBuilder = transactionBuilder()
+        .add(setComputeUnitLimit(umi, { units: 1_000_000 }))
+        .add(setComputeUnitPrice(umi, { microLamports: 100_000 }))
+        .add(
+          mintV2(umi, {
+            candyMachine: CandyMachine?.publicKey,
+            candyGuard: CandyGuard?.publicKey,
+            nftMint: nftMint,
+            tokenStandard: TokenStandard.ProgrammableNonFungible,
+            collectionMint: CandyMachine?.collectionMint,
+            collectionUpdateAuthority: publicKey(
+              "finzc9xMFo6F5GqPhJrneMnTsZu5eocJzJTMooBGLgv"
+            ),
+            group: some("PUBLIC"),
+            minter: buyer,
+            mintArgs: {
+              solPayment: groupPrice?.value,
+            },
+          })
+        );
 
-const confirmation = await umi.rpc.confirmTransaction(tx.signature, {
-  strategy: {
-    type: "blockhash",
-    ...(await umi.rpc.getLatestBlockhash()),
-  },
-});
+      const tx = await txBuilder.sendAndConfirm(umi);
 
-// Wait a second or two for the NFT to appear on-chain
-await new Promise((resolve) => setTimeout(resolve, 2000));
+      const confirmation = await umi.rpc.confirmTransaction(tx.signature, {
+        strategy: {
+          type: "blockhash",
+          ...(await umi.rpc.getLatestBlockhash()),
+        },
+      });
 
-// Check if the mint address actually exists
-const nftAccount = await umi.rpc.getAccount(nftMint.publicKey);
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      const nftAccount = await umi.rpc.getAccount(nftMint.publicKey);
 
-if (!nftAccount.exists) {
-  toast.error("❌ Mint failed: NFT not created on-chain");
-  console.error("No NFT account found for mint:", nftMint.publicKey.toString());
-  return; // stop here — don’t show success toast
-}
+      if (!nftAccount.exists) {
+        toast.error("❌ Mint failed: NFT not created on-chain");
+        console.error("No NFT account found for mint:", nftMint.publicKey.toString());
+        return;
+      }
 
-if (confirmation.value.err) {
-  toast.error("Mint failed: Not enough SOL or rejected");
-  console.error("❌ Transaction failed", confirmation.value.err);
-} else {
-  toast.success("✅ Mint successful!");
-  setIsCMLoading && setIsCMLoading(true);
-}
-  } catch (error) {
-    console.error("Error during mint:", error);
-    toast.error("Transaction failed or rejected by wallet");
-  } finally {
-    setMintingText("Mint Now");
+      if (confirmation.value.err) {
+        toast.error("Mint failed: Not enough SOL or rejected");
+        console.error("❌ Transaction failed", confirmation.value.err);
+      } else {
+        toast.success("✅ Mint successful!");
+        setIsCMLoading && setIsCMLoading(true);
+      }
+    } catch (error) {
+      console.error("Error during mint:", error);
+      toast.error("Transaction failed or rejected by wallet");
+    } finally {
+      setMintingText("Mint Now");
+    }
   }
-}
 
   return (
-    <div className={styles.MintDiv}>
-      <span>SHARKYBOY MINT MACHINE</span>
-      <div className={styles.ContentContainer}>
-        <div className={styles.ContentLeft}>
-          <img src="/logoGif.gif" alt="" />
-          <div className={styles.IconsContainer}>
-            <a href="https://t.co/2PyAgbMLEj" target="_blank">
-              <FaTelegram />
-            </a>
-            <a href="http://instagram.com/sharkyboy_nft" target="_blank">
-              <FaInstagram />
-            </a>
-            <a href="https://github.com/Sharkyboy-dev" target="_blank">
-              <FaGithub />
-            </a>
-            <a href=" https://x.com/sharkyboy_nft" target="_blank">
-              <FaXTwitter />
-            </a>
+    <div className={styles.MintContentWrapper}>
+      <div className={styles.MintDiv}>
+        <span>SHARKYBOY MINT MACHINE</span>
+        <div className={styles.ContentContainer}>
+          <div className={styles.ContentLeft}>
+            <img src="/logoGif.gif" alt="" />
+            <div className={styles.IconsContainer}>
+              <a href="https://t.co/2PyAgbMLEj" target="_blank">
+                <FaTelegram />
+              </a>
+              <a href="http://instagram.com/sharkyboy_nft" target="_blank">
+                <FaInstagram />
+              </a>
+              <a href="https://github.com/Sharkyboy-dev" target="_blank">
+                <FaGithub />
+              </a>
+              <a href="https://x.com/sharkyboy_nft" target="_blank">
+                <FaXTwitter />
+              </a>
+            </div>
           </div>
-        </div>
-        <div className={styles.ContentRight}>
-          <div className={styles.DescDiv}>
-            <span>Symbol : FIN</span>
-            <span>Description</span>
-            <p>
-              SHARKYBOY THE SHARKYBOY GENESIS COLLECTION IS A LIMITED
-              1,000-PIECE NFT SERIES FEATURING UNIQUE, BATTLE-READY MUTANT
-              SHARKS WITH BOLD DESIGNS, RARE TRAITS, AND LEGENDARY ORIGINS. MORE
-              THAN JUST COLLECTIBLES, THESE NFTS GRANT EXCLUSIVE COMMUNITY
-              PERKS, FUTURE AIRDROPS, AND GOVERNANCE RIGHTS IN THE SHARKYBOY
-              ECOSYSTEM. WITH A MIX OF SAMURAI WARRIORS, STREET LEGENDS, AND
-              HIGH-TECH COMBAT SHARKS, THIS COLLECTION BLENDS STYLE, RARITY, AND
-              INNOVATION INTO A POWERFUL WEBS EXPERIENCE. OWN A PIECE OF THE
-              OCEAN'S FIERCEST WARRIORS-ONCE THEY'RE GONE, THEY'RE GONE FOREVER.
-            </p>
-          </div>
-          <div className={styles.MintCountBox}>
-            <div className={styles.Counttext}>
-              <div
-                style={{
-                  background: "white",
-                  margin: "10px 1em",
-                  height: "60px",
-                  borderRadius: "2em",
-                  padding: "5px",
-                  width: "100%",
-                  position: "relative",
-                }}
-              >
+
+          <div className={styles.ContentRight}>
+            <div className={styles.DescDiv}>
+              <span>Symbol : FIN</span>
+              <span>Description</span>
+              <p>
+                SHARKYBOY THE SHARKYBOY GENESIS COLLECTION IS A LIMITED 1,000-PIECE NFT SERIES FEATURING UNIQUE, BATTLE-READY MUTANT SHARKS WITH BOLD DESIGNS, RARE TRAITS, AND LEGENDARY ORIGINS. MORE THAN JUST COLLECTIBLES, THESE NFTS GRANT EXCLUSIVE COMMUNITY PERKS, FUTURE AIRDROPS, AND GOVERNANCE RIGHTS IN THE SHARKYBOY ECOSYSTEM. WITH A MIX OF SAMURAI WARRIORS, STREET LEGENDS, AND HIGH-TECH COMBAT SHARKS, THIS COLLECTION BLENDS STYLE, RARITY, AND INNOVATION INTO A POWERFUL WEBS EXPERIENCE. OWN A PIECE OF THE OCEAN'S FIERCEST WARRIORS-ONCE THEY'RE GONE, THEY'RE GONE FOREVER.
+              </p>
+            </div>
+            <div className={styles.MintCountBox}>
+              <div className={styles.Counttext}>
                 <div
                   style={{
-                    width: `${
-                      (Number(CandyMachine?.itemsRedeemed) /
-                        Number(CandyMachine?.itemsLoaded)) *
-                      100
-                    }%`,
-                    minWidth: "5%",
-                    height: "50px",
+                    background: "white",
+                    margin: "10px 1em",
+                    height: "60px",
                     borderRadius: "2em",
-
-                    background: "black",
+                    padding: "5px",
+                    width: "100%",
+                    position: "relative",
                   }}
-                />
-
-                <div className={styles.MintPercent}>
-                  {Number(CandyMachine?.itemsRedeemed)}&nbsp; of &nbsp;
-                  {Number(CandyMachine?.itemsLoaded)}
+                >
+                  <div
+                    style={{
+                      width: `${
+                        (Number(CandyMachine?.itemsRedeemed) /
+                          Number(CandyMachine?.itemsLoaded)) * 100
+                      }%`,
+                      minWidth: "5%",
+                      height: "50px",
+                      borderRadius: "2em",
+                      background: "black",
+                    }}
+                  />
+                  <div className={styles.MintPercent}>
+                    {Number(CandyMachine?.itemsRedeemed)}&nbsp; of &nbsp;
+                    {Number(CandyMachine?.itemsLoaded)}
+                  </div>
                 </div>
               </div>
             </div>
+            <button
+              onClick={() => createNft(umi.identity.publicKey)}
+              disabled={
+                isCMLoading ||
+                mintingText !== "Mint Now" ||
+                umi.identity.publicKey === dummyPublicKey
+              }
+            >
+              {isCMLoading ? "Loading.." : mintingText}
+            </button>
           </div>
-          <button
-            onClick={() => createNft(umi.identity.publicKey)}
-            disabled={
-              isCMLoading ||
-              mintingText !== "Mint Now" ||
-              umi.identity.publicKey === dummyPublicKey
-            }
-          >
-            {isCMLoading ? "Loading.." : mintingText}
-          </button>
         </div>
       </div>
     </div>
@@ -196,4 +185,3 @@ if (confirmation.value.err) {
 };
 
 export default MintContainer;
-// Confirming NFT mint existence after tx confirmation
