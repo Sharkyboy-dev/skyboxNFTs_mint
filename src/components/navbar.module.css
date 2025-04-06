@@ -1,19 +1,23 @@
 .navbarContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background-color: black;
+  border-top: 3px solid white;
+  border-bottom: 3px solid white;
 }
 
 .Top {
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1em 2em;
-  background-color: black;
-  border-top: 3px solid white;
-  border-bottom: 3px solid white;
   gap: 2rem;
-  flex-wrap: nowrap; /* prevent stacking */
+  flex-wrap: nowrap;
 }
 
 .LinkContainer {
@@ -22,7 +26,7 @@
   align-items: center;
   font-size: 1.8em;
   color: var(--c5);
-  flex: 1; /* pushes wallet to the right */
+  flex: 1;
 }
 
 .LinkContainer a {
