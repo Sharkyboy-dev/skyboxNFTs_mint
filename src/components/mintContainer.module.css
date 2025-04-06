@@ -10,6 +10,21 @@
 .MintDiv span {
   text-align: center;
   font-size: 6em;
+  animation: neonFlicker 2.5s ease-out forwards;
+  color: white;
+  text-shadow: 0 0 5px #0ff;
+}
+
+@keyframes neonFlicker {
+  0% { opacity: 0; text-shadow: none; }
+  5% { opacity: 1; text-shadow: 0 0 5px #0ff; }
+  10% { opacity: 0.6; }
+  15% { opacity: 1; text-shadow: 0 0 10px #0ff, 0 0 20px #0ff; }
+  20% { opacity: 0.8; }
+  30%, 100% {
+    opacity: 1;
+    text-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 40px #0ff;
+  }
 }
 
 .ContentContainer {
