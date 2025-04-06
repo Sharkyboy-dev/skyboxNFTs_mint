@@ -30,9 +30,27 @@
 }
 
 .LinkContainer a {
-  text-shadow: 2px 2px 20px var(--c5);
+  text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff;
   text-decoration: none;
-  color: inherit;
+  color: #0ff;
+  font-weight: 800;
+  letter-spacing: 1px;
+  animation: pulseTextGlow 2.5s ease-in-out infinite;
+  transition: transform 0.3s ease;
+}
+
+.LinkContainer a:hover {
+  transform: scale(1.1);
+  text-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 30px #0ff;
+}
+
+@keyframes pulseTextGlow {
+  0%, 100% {
+    text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 15px #0ff;
+  }
+  50% {
+    text-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 30px #0ff;
+  }
 }
 
 .WalletWrapper {
