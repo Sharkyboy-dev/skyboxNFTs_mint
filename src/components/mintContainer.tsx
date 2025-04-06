@@ -32,6 +32,8 @@ const MintContainer = () => {
   const redeemed = Number(CandyMachine?.itemsRedeemed || 0);
   const total = Number(CandyMachine?.itemsLoaded || 1);
   const percentage = (redeemed / total) * 100;
+  const isSoldOut = redeemed >= total;
+  const isMinting = mintingText === "Minting..";
 
   async function createNft(buyer: any) {
     if (!CandyMachine || !CandyGuard || !CandyMachine?.publicKey) return;
@@ -89,7 +91,7 @@ const MintContainer = () => {
 
   return (
     <div className={styles.MintContentWrapper}>
-      <div className={styles.MintDiv}>
+      <div className={`${styles.MintDiv} ${isSoldOut ? styles.soldOut : ""}`}>
         <span>SHARKYBOY MINT MACHINE</span>
         <div className={styles.ContentContainer}>
           <div className={styles.ContentLeft}>
@@ -117,11 +119,16 @@ const MintContainer = () => {
                 }`}
                 style={{ "--progress-width": `${percentage}%` } as React.CSSProperties}
               />
-              <div className={styles.MintPercent}>
+              <div
+                className={`${styles.MintPercent} ${
+                  percentage >= 90 ? styles.nearFull : ""
+                }`}
+              >
                 {redeemed} of {total}
               </div>
             </div>
             <button
+              className={isMinting ? styles.minting : ""}
               onClick={() => createNft(umi.identity.publicKey)}
               disabled={
                 isCMLoading || mintingText !== "Mint Now" || umi.identity.publicKey === dummyPublicKey
