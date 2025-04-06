@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap');
+
 .navbarContainer {
   width: 100vw;
   position: fixed;
@@ -7,6 +9,7 @@
   background-color: black;
   border-top: 3px solid white;
   border-bottom: 3px solid white;
+  font-family: 'Orbitron', sans-serif;
 }
 
 .Top {
@@ -30,6 +33,7 @@
 }
 
 .LinkContainer a {
+  font-family: 'Orbitron', sans-serif;
   text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff;
   text-decoration: none;
   color: #0ff;
