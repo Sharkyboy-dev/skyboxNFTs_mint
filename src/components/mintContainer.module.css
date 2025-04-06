@@ -1,5 +1,5 @@
 .MintDiv {
-  padding: 7rem 1em 2em; /* space for navbar */
+  padding: 7rem 1em 2em;
   min-height: fit-content;
   display: flex;
   flex-direction: column;
@@ -107,6 +107,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  height: 60px;
+  margin-bottom: 1rem;
 }
 
 .MintCountBox span {
@@ -118,15 +121,15 @@
   font-size: 2em;
   font-weight: 700;
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--c5);
-  text-shadow: var(--c5);
+  text-shadow: 0 0 10px var(--c5);
+  pointer-events: none;
 }
 
 .ContentRight button {
