@@ -34,6 +34,10 @@ const MintContainer = () => {
   const [mintingText, setMintingText] = useState("Mint Now");
   const umi = useUmi();
 
+  const redeemed = Number(CandyMachine?.itemsRedeemed || 0);
+  const total = Number(CandyMachine?.itemsLoaded || 1);
+  const percentage = (redeemed / total) * 100;
+
   async function createNft(buyer: any) {
     if (!CandyMachine || !CandyGuard || !CandyMachine?.publicKey) {
       return;
@@ -136,35 +140,14 @@ const MintContainer = () => {
               </p>
             </div>
             <div className={styles.MintCountBox}>
-              <div className={styles.Counttext}>
-                <div
-                  style={{
-                    background: "white",
-                    margin: "10px 1em",
-                    height: "60px",
-                    borderRadius: "2em",
-                    padding: "5px",
-                    width: "100%",
-                    position: "relative",
-                  }}
-                >
-                  <div
-                    style={{
-                      width: `${
-                        (Number(CandyMachine?.itemsRedeemed) /
-                          Number(CandyMachine?.itemsLoaded)) * 100
-                      }%`,
-                      minWidth: "5%",
-                      height: "50px",
-                      borderRadius: "2em",
-                      background: "black",
-                    }}
-                  />
-                  <div className={styles.MintPercent}>
-                    {Number(CandyMachine?.itemsRedeemed)}&nbsp; of &nbsp;
-                    {Number(CandyMachine?.itemsLoaded)}
-                  </div>
-                </div>
+              <div
+                className={`${styles.MintProgressFill} ${
+                  percentage < 33 ? styles.low : percentage < 66 ? styles.medium : styles.high
+                }`}
+                style={{ "--progress-width": `${percentage}%` } as React.CSSProperties}
+              />
+              <div className={styles.MintPercent}>
+                {redeemed} of {total}
               </div>
             </div>
             <button
