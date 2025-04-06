@@ -13,10 +13,11 @@ export default function Home() {
           className={styles.bubble}
           style={{
             left: `${Math.random() * 100}%`,
+            bottom: "-50px",
             width: `${10 + Math.random() * 20}px`,
             height: `${10 + Math.random() * 20}px`,
-            animationDuration: `${10 + Math.random() * 20}s`,
-            animationDelay: `${Math.random() * 10}s`,
+            animationDuration: `${15 + Math.random() * 15}s`,
+            animationDelay: `${Math.random() * 5}s`,
           }}
         />
       ))}
