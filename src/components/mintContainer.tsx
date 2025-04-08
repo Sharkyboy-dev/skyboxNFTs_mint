@@ -35,14 +35,19 @@ const MintContainer = () => {
   const isSoldOut = redeemed >= total;
   const isMinting = mintingText === "Minting..";
 
+  const groupToUse = CandyGuard?.groups.find((g) => g.label === "PUBLIC");
+  const groupPrice = groupToUse?.guards.solPayment;
+  const mintPriceSol =
+    groupPrice?.__option === "Some" && groupPrice?.value?.lamports
+      ? Number(groupPrice.value.lamports) / 1_000_000_000
+      : null;
+
   async function createNft(buyer: any) {
     if (!CandyMachine || !CandyGuard || !CandyMachine?.publicKey) return;
 
     setMintingText("Minting..");
     try {
       const nftMint = generateSigner(umi);
-      const groupToUse = CandyGuard?.groups.find((g) => g.label === "PUBLIC");
-      const groupPrice = groupToUse?.guards.solPayment;
       if (groupPrice?.__option !== "Some" || !groupPrice?.value) return;
 
       const txBuilder = transactionBuilder()
@@ -111,7 +116,11 @@ const MintContainer = () => {
               <p>
                 SHARKYBOY THE SHARKYBOY GENESIS COLLECTION IS A LIMITED 1,000-PIECE NFT SERIES FEATURING UNIQUE, BATTLE-READY MUTANT SHARKS WITH BOLD DESIGNS, RARE TRAITS, AND LEGENDARY ORIGINS. MORE THAN JUST COLLECTIBLES, THESE NFTS GRANT EXCLUSIVE COMMUNITY PERKS, FUTURE AIRDROPS, AND GOVERNANCE RIGHTS IN THE SHARKYBOY ECOSYSTEM. WITH A MIX OF SAMURAI WARRIORS, STREET LEGENDS, AND HIGH-TECH COMBAT SHARKS, THIS COLLECTION BLENDS STYLE, RARITY, AND INNOVATION INTO A POWERFUL WEB3 EXPERIENCE. OWN A PIECE OF THE OCEAN'S FIERCEST WARRIORS—ONCE THEY'RE GONE, THEY'RE GONE FOREVER.
               </p>
+              {mintPriceSol !== null && (
+                <p><strong>Mint Price:</strong> {mintPriceSol} SOL</p>
+              )}
             </div>
+
             <div className={styles.MintCountBox}>
               <div
                 className={`${styles.MintProgressFill} ${
@@ -127,6 +136,7 @@ const MintContainer = () => {
                 {redeemed} of {total}
               </div>
             </div>
+
             <button
               className={isMinting ? styles.minting : ""}
               onClick={() => createNft(umi.identity.publicKey)}
