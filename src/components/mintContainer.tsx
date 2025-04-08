@@ -97,10 +97,9 @@ const MintContainer = () => {
         <span>SHARKYBOY MINT MACHINE</span>
 
         <div className={styles.ContentContainer}>
-          {/* LEFT SIDE: IMAGE + BUTTON + MINT PRICE + ICONS */}
+          {/* LEFT PANEL */}
           <div className={styles.ContentLeft}>
             <img src="/logoGif.gif" alt="SharkyBoy" />
-
             <button
               className={`${styles.MintButton} ${isMinting ? styles.minting : ""}`}
               onClick={() => createNft(umi.identity.publicKey)}
@@ -112,9 +111,7 @@ const MintContainer = () => {
             >
               {isCMLoading ? "Loading.." : mintingText}
             </button>
-
             <div className={styles.MintPriceTag}>Mint Price: 0.5 SOL</div>
-
             <div className={styles.IconsContainer}>
               <a href="https://t.co/2PyAgbMLEj" target="_blank" rel="noreferrer"><FaTelegram /></a>
               <a href="http://instagram.com/sharkyboy_nft" target="_blank" rel="noreferrer"><FaInstagram /></a>
@@ -123,8 +120,8 @@ const MintContainer = () => {
             </div>
           </div>
 
-          {/* RIGHT SIDE: DESCRIPTION + PROGRESS BAR + RARITY BOX */}
-          <div className={styles.ContentRight}>
+          {/* CENTER PANEL - Description */}
+          <div className={styles.ContentMiddle}>
             <div className={styles.DescDiv}>
               <span>Symbol : FIN</span>
               <span>Description</span>
@@ -136,20 +133,19 @@ const MintContainer = () => {
 
             <div className={styles.MintCountBox}>
               <div
-                className={`${styles.MintProgressFill} ${
-                  percentage < 33 ? styles.low : percentage < 66 ? styles.medium : styles.high
-                }`}
+                className={`${styles.MintProgressFill} ${percentage < 33 ? styles.low : percentage < 66 ? styles.medium : styles.high}`}
                 style={{ "--progress-width": `${percentage}%` } as React.CSSProperties}
               />
               <div
-                className={`${styles.MintPercent} ${
-                  percentage >= 90 ? styles.nearFull : ""
-                }`}
+                className={`${styles.MintPercent} ${percentage >= 90 ? styles.nearFull : ""}`}
               >
                 {redeemed} of {total}
               </div>
             </div>
+          </div>
 
+          {/* RIGHT PANEL - Rarity Box */}
+          <div className={styles.ContentRarity}>
             <div className={styles.RarityBox}>
               <h3>Top 5 Rarest NFTs:</h3>
               <ul>
