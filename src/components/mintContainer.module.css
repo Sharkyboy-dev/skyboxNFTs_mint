@@ -205,6 +205,24 @@
   transition: transform 0.3s ease;
 }
 
+/* NEW inner button wrapper */
+.MintButtonInner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.1;
+}
+
+.MintButtonInner span:nth-child(1) {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.MintButtonInner span:nth-child(2) {
+  font-size: 1.7rem;
+  font-weight: 900;
+}
+
 @keyframes shimmer {
   0% { background-position: 0% 50%; }
   100% { background-position: 100% 50%; }
