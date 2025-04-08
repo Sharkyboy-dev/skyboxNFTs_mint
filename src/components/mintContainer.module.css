@@ -251,4 +251,30 @@
 }
 
 .MintDiv.soldOut {
-  opacity:
+  opacity: 0.4;
+  pointer-events: none;
+  filter: grayscale(0.7);
+  transition: all 0.5s ease-in-out;
+}
+
+@media screen and (max-width: 978px) {
+  .ContentContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .ContentRight {
+    width: 100%;
+    flex-direction: column-reverse;
+  }
+
+  .MintDiv span {
+    font-size: 3em;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .MintDiv {
+    padding: 6rem 0 2em;
+  }
+}
