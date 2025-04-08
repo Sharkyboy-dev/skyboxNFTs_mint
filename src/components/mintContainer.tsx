@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState } from "react";
 import styles from "./mintContainer.module.css";
 import { useCandyMachine } from "@/utils/solanaBasicContext";
@@ -122,7 +123,7 @@ const MintContainer = () => {
             </div>
           </div>
 
-          {/* RIGHT SIDE: DESCRIPTION + PROGRESS BAR */}
+          {/* RIGHT SIDE: DESCRIPTION + PROGRESS BAR + RARITY BOX */}
           <div className={styles.ContentRight}>
             <div className={styles.DescDiv}>
               <span>Symbol : FIN</span>
@@ -147,6 +148,26 @@ const MintContainer = () => {
               >
                 {redeemed} of {total}
               </div>
+            </div>
+
+            <div className={styles.RarityBox}>
+              <h3>Top 5 Rarest NFTs:</h3>
+              <ul>
+                <li>#446 — Rarity Score: 87.94 — <strong>Ultra Rare</strong></li>
+                <li>#161 — Rarity Score: 82.41 — <strong>Epic</strong></li>
+                <li>#813 — Rarity Score: 80.75 — <strong>Epic</strong></li>
+                <li>#913 — Rarity Score: 79.59 — <strong>Epic</strong></li>
+                <li>#677 — Rarity Score: 79.46 — <strong>Epic</strong></li>
+              </ul>
+              <h3>Rarity Tiers:</h3>
+              <p>
+                <strong>Ultra Rare</strong> = Top 1%<br />
+                <strong>Epic</strong> = Top 5%<br />
+                <strong>Rare</strong> = Top 10%<br />
+                <strong>Uncommon</strong> = Top 25%<br />
+                <strong>Common</strong> = Everyone else
+              </p>
+              <p><em>Hold one of the rarest SharkyBoys? Flex it. Trade it. Or just vibe.</em></p>
             </div>
           </div>
         </div>
