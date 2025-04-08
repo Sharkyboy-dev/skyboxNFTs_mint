@@ -132,7 +132,7 @@ const MintContainer = () => {
             </div>
 
             <button
-              className={styles.MintButton}
+              className={`${styles.MintButton} ${isMinting ? styles.minting : ""}`}
               onClick={() => createNft(umi.identity.publicKey)}
               disabled={
                 isCMLoading || mintingText !== "Mint Now" || umi.identity.publicKey === dummyPublicKey
