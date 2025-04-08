@@ -207,18 +207,18 @@
   align-items: center;
   justify-content: center;
   line-height: 1.2;
-  padding: 0.3em 0.8em;
+  padding: 0.2em 0.4em;
 }
 
 .MintText {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-weight: 700;
   color: black;
   text-transform: uppercase;
 }
 
 .MintPrice {
-  font-size: 1.4rem;
+  font-size: 1.1rem;
   font-weight: 900;
   color: black;
 }
