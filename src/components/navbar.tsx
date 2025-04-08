@@ -16,6 +16,7 @@ const Navbar = () => {
         </div>
         <div className={styles.WalletWrapper}>
           <WalletMultiButton
+            className={styles.walletGlow}
             style={{
               background:
                 "linear-gradient(108deg, rgba(212,166,227,1) 0%, rgba(102,182,195,1) 100%)",
