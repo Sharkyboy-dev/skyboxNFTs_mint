@@ -103,6 +103,24 @@ const MintContainer = () => {
               <a href="https://github.com/Sharkyboy-dev" target="_blank" rel="noreferrer"><FaGithub /></a>
               <a href="https://x.com/sharkyboy_nft" target="_blank" rel="noreferrer"><FaXTwitter /></a>
             </div>
+
+            {/* ✅ Mint Button moved to left side */}
+            <button
+              className={`${styles.MintButton} ${isMinting ? styles.minting : ""}`}
+              onClick={() => createNft(umi.identity.publicKey)}
+              disabled={
+                isCMLoading || mintingText !== "Mint Now" || umi.identity.publicKey === dummyPublicKey
+              }
+            >
+              {isCMLoading ? (
+                "Loading.."
+              ) : (
+                <div className={styles.MintButtonInner}>
+                  <span className={styles.MintText}>Mint Now</span>
+                  <span className={styles.MintPrice}>0.5 SOL</span>
+                </div>
+              )}
+            </button>
           </div>
 
           <div className={styles.ContentRight}>
@@ -115,6 +133,7 @@ const MintContainer = () => {
               <p><strong>Mint Price:</strong> 0.5 SOL</p>
             </div>
 
+            {/* ✅ Progress bar stays on right */}
             <div className={styles.MintCountBox}>
               <div
                 className={`${styles.MintProgressFill} ${
@@ -130,16 +149,6 @@ const MintContainer = () => {
                 {redeemed} of {total}
               </div>
             </div>
-
-            <button
-              className={isMinting ? styles.minting : ""}
-              onClick={() => createNft(umi.identity.publicKey)}
-              disabled={
-                isCMLoading || mintingText !== "Mint Now" || umi.identity.publicKey === dummyPublicKey
-              }
-            >
-              {isCMLoading ? "Loading.." : mintingText}
-            </button>
           </div>
         </div>
       </div>
