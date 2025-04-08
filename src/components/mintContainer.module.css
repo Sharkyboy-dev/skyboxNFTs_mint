@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;900&display=swap');
 
 .MintDiv {
-  padding: 4rem 1em 2em;
+  padding: 7rem 1em 2em;
   min-height: fit-content;
   display: flex;
   flex-direction: column;
@@ -13,7 +13,7 @@
 
 .MintDiv span {
   text-align: center;
-  font-size: 4.5em;
+  font-size: 5em;
   animation: neonFlicker 2.5s ease-out forwards;
   color: white;
   text-shadow: 0 0 5px #0ff;
