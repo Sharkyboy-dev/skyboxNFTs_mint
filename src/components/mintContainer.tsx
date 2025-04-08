@@ -112,12 +112,6 @@ const MintContainer = () => {
               {isCMLoading ? "Loading.." : mintingText}
             </button>
             <div className={styles.MintPriceTag}>Mint Price: 0.5 SOL</div>
-            <div className={styles.IconsContainer}>
-              <a href="https://t.co/2PyAgbMLEj" target="_blank" rel="noreferrer"><FaTelegram /></a>
-              <a href="http://instagram.com/sharkyboy_nft" target="_blank" rel="noreferrer"><FaInstagram /></a>
-              <a href="https://github.com/Sharkyboy-dev" target="_blank" rel="noreferrer"><FaGithub /></a>
-              <a href="https://x.com/sharkyboy_nft" target="_blank" rel="noreferrer"><FaXTwitter /></a>
-            </div>
           </div>
 
           {/* CENTER PANEL - Description */}
@@ -165,6 +159,17 @@ const MintContainer = () => {
               </p>
               <p><em>Hold one of the rarest SharkyBoys? Flex it. Trade it. Or just vibe.</em></p>
             </div>
+          </div>
+        </div>
+
+        {/* SOCIAL PANEL BOX */}
+        <div className={styles.SocialBox}>
+          <h3>Connect With Us</h3>
+          <div className={styles.IconsContainer}>
+            <a href="https://t.co/2PyAgbMLEj" target="_blank" rel="noreferrer"><FaTelegram /></a>
+            <a href="http://instagram.com/sharkyboy_nft" target="_blank" rel="noreferrer"><FaInstagram /></a>
+            <a href="https://github.com/Sharkyboy-dev" target="_blank" rel="noreferrer"><FaGithub /></a>
+            <a href="https://x.com/sharkyboy_nft" target="_blank" rel="noreferrer"><FaXTwitter /></a>
           </div>
         </div>
       </div>
