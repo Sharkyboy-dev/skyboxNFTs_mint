@@ -138,7 +138,22 @@ const MintContainer = () => {
                 isCMLoading || mintingText !== "Mint Now" || umi.identity.publicKey === dummyPublicKey
               }
             >
-              {isCMLoading ? "Loading.." : mintingText}
+              {isCMLoading ? (
+                "Loading.."
+              ) : (
+                <>
+                  {mintingText}
+                  <span style={{ marginLeft: "8px", display: "inline-flex", alignItems: "center" }}>
+                    (0.5
+                    <img
+                      src="/solanaLogo.svg"
+                      alt="SOL"
+                      style={{ width: "16px", height: "16px", marginLeft: "4px" }}
+                    />
+                    )
+                  </span>
+                </>
+              )}
             </button>
           </div>
         </div>
