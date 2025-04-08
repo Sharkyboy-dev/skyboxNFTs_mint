@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;900&display=swap');
 
 .MintDiv {
-  padding: 7rem 1em 2em;
+  padding: 4rem 1em 2em;
   min-height: fit-content;
   display: flex;
   flex-direction: column;
@@ -13,7 +13,7 @@
 
 .MintDiv span {
   text-align: center;
-  font-size: 6em;
+  font-size: 4.5em;
   animation: neonFlicker 2.5s ease-out forwards;
   color: white;
   text-shadow: 0 0 5px #0ff;
@@ -36,21 +36,21 @@
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  gap: 3rem;
+  gap: 2rem;
   flex-wrap: wrap;
-  max-width: 1100px;
+  max-width: 1400px;
 }
 
 .ContentLeft,
-.ContentRight {
-  width: 500px;
-  flex: 1;
-  min-height: 100%;
+.ContentMiddle,
+.ContentRarity {
+  width: 430px;
+  flex: none;
   border: 4px solid rgb(77, 77, 77);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 1em;
   padding: 1.5em;
   background-color: rgba(0, 0, 0, 0.664);
@@ -59,31 +59,17 @@
 }
 
 .ContentLeft img {
-  width: 400px;
-  max-width: 100%;
+  width: 100%;
+  max-width: 400px;
   border-radius: 1em;
   padding: 10px;
   box-shadow: 0 0 15px white;
 }
 
-.ContentLeft span {
-  font-size: 2em;
-  color: white;
-}
-
-.ContentLeft button {
-  color: black;
-  background-color: var(--c4);
-  font-size: 2em;
-  padding: 10px 2em;
-  border-radius: 10px;
-  border: 4px solid white;
-}
-
 .MintButton {
   display: flex;
   width: fit-content;
-  font-size: 3em;
+  font-size: 2.5em;
   font-family: 'Orbitron', sans-serif;
   font-weight: 900;
   letter-spacing: 2px;
@@ -94,11 +80,7 @@
   cursor: pointer;
   border: none;
   text-transform: uppercase;
-  background: linear-gradient(
-    108deg,
-    rgba(92, 225, 230, 1) 0%,
-    rgba(140, 82, 255, 0.549) 100%
-  );
+  background: linear-gradient(108deg, rgba(92, 225, 230, 1) 0%, rgba(140, 82, 255, 0.549) 100%);
   background-size: 400% 400%;
   animation: shimmer 4s linear infinite, pulseTextGlow 2.5s ease-in-out infinite;
   box-shadow: 0 0 20px rgb(110, 109, 109);
@@ -112,6 +94,7 @@
   color: #0ff;
   text-shadow: 0 0 10px #0ff;
   margin-top: 1rem;
+  text-align: center;
 }
 
 .DescDiv {
@@ -123,7 +106,7 @@
   gap: 1em;
   background-color: rgba(0, 0, 0, 0.664);
   border: 4px solid rgb(88, 88, 88);
-  padding: 2em 1em;
+  padding: 2em 1.5em;
   border-radius: 1em;
   color: var(--c5);
   box-sizing: border-box;
@@ -134,10 +117,38 @@
 .DescDiv span {
   font-size: 2em;
   font-weight: 900;
-  text-align: center;
   font-family: 'Orbitron', sans-serif;
   color: white;
   text-shadow: 0 0 10px #0ff;
+}
+
+.RarityBox {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.664);
+  border: 4px solid rgb(77, 77, 77);
+  border-radius: 1em;
+  padding: 1.5em;
+  color: white;
+  text-align: left;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.9em;
+  line-height: 1.5em;
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.3);
+}
+
+.RarityBox h3 {
+  font-size: 1.3em;
+  color: #0ff;
+  text-shadow: 0 0 5px #0ff;
+  margin-bottom: 0.5em;
+}
+
+.RarityBox p em {
+  color: #0ff;
+  display: block;
+  margin-top: 1em;
+  font-style: italic;
+  text-shadow: 0 0 5px #0ff;
 }
 
 .IconsContainer {
@@ -202,48 +213,6 @@
   z-index: 2;
 }
 
-.RarityBox {
-  width: 100%;
-  margin-top: 1rem;
-  background-color: rgba(0, 0, 0, 0.664);
-  border: 3px solid #0ff;
-  border-radius: 1em;
-  padding: 1.5em;
-  color: #fff;
-  text-align: center;
-  font-family: 'Orbitron', sans-serif;
-  text-shadow: 0 0 5px #0ff;
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
-}
-
-.RarityBox h3 {
-  font-size: 1.8em;
-  color: #0ff;
-  margin-bottom: 0.5em;
-}
-
-.RarityBox ul {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 1em 0;
-}
-
-.RarityBox li {
-  margin: 0.2em 0;
-  font-size: 1.1em;
-}
-
-.RarityBox p {
-  font-size: 1em;
-  color: #ccc;
-  line-height: 1.5em;
-}
-
-.RarityBox em {
-  font-style: italic;
-  color: #0ff;
-}
-
 @keyframes shimmer {
   0% { background-position: 0% 50%; }
   100% { background-position: 100% 50%; }
@@ -284,8 +253,9 @@
     align-items: center;
   }
 
-  .ContentRight,
-  .ContentLeft {
+  .ContentLeft,
+  .ContentMiddle,
+  .ContentRarity {
     width: 100%;
     flex-direction: column;
   }
