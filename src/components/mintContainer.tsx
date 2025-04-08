@@ -141,18 +141,10 @@ const MintContainer = () => {
               {isCMLoading ? (
                 "Loading.."
               ) : (
-                <>
-                  {mintingText}
-                  <span style={{ marginLeft: "8px", display: "inline-flex", alignItems: "center" }}>
-                    (0.5
-                    <img
-                      src="/solanaLogo.svg"
-                      alt="SOL"
-                      style={{ width: "16px", height: "16px", marginLeft: "4px" }}
-                    />
-                    )
-                  </span>
-                </>
+                <div className={styles.MintButtonInner}>
+                  <span className={styles.MintText}>Mint Now</span>
+                  <span className={styles.MintPrice}>0.5 SOL</span>
+                </div>
               )}
             </button>
           </div>
