@@ -180,7 +180,7 @@
   font-size: 0.9em;
 }
 
-.MintButton {
+.ContentRight button {
   display: flex;
   width: fit-content;
   font-size: 3em;
@@ -203,27 +203,6 @@
   animation: shimmer 4s linear infinite, pulseTextGlow 2.5s ease-in-out infinite;
   box-shadow: 0 0 20px rgb(110, 109, 109);
   transition: transform 0.3s ease;
-}
-
-.MintButtonInner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  line-height: 1.1;
-  padding: 0;
-}
-
-.MintText {
-  font-size: 0.8em;
-  font-weight: 700;
-  color: black;
-  text-transform: uppercase;
-}
-
-.MintPrice {
-  font-size: 0.9em;
-  font-weight: 900;
-  color: black;
 }
 
 @keyframes shimmer {
