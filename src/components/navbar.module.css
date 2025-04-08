@@ -95,3 +95,24 @@
     padding: 0.2em 0;
   }
 }
+
+/* 👇 NEW WALLET BUTTON ANIMATION 👇 */
+.walletGlow {
+  transition: all 0.3s ease;
+  animation: shimmerBtn 5s linear infinite;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+}
+
+.walletGlow:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+}
+
+@keyframes shimmerBtn {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
