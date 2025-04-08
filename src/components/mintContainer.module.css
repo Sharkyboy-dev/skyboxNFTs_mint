@@ -181,49 +181,50 @@
 }
 
 .MintButton {
-  all: unset;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  width: fit-content;
+  font-size: 3em;
   font-family: 'Orbitron', sans-serif;
-  letter-spacing: 1px;
-  padding: 0.4em 1em;
-  border-radius: 1.5em;
+  font-weight: 900;
+  letter-spacing: 2px;
+  padding: 0.1em 1em;
+  align-self: center;
+  border-radius: 2em;
+  color: black;
+  cursor: pointer;
+  border: none;
+  text-transform: uppercase;
   background: linear-gradient(
     108deg,
     rgba(92, 225, 230, 1) 0%,
     rgba(140, 82, 255, 0.549) 100%
   );
   background-size: 400% 400%;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
   animation: shimmer 4s linear infinite, pulseTextGlow 2.5s ease-in-out infinite;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-  max-width: 240px;
+  box-shadow: 0 0 20px rgb(110, 109, 109);
+  transition: transform 0.3s ease;
 }
 
 .MintButtonInner {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   line-height: 1.1;
-  padding: 0.15em 0.3em;
+  padding: 0;
 }
 
 .MintText {
-  font-size: 0.75rem;
-  font-weight: 600;
+  font-size: 0.8em;
+  font-weight: 700;
   color: black;
   text-transform: uppercase;
 }
 
 .MintPrice {
-  font-size: 1rem;
-  font-weight: 800;
+  font-size: 0.9em;
+  font-weight: 900;
   color: black;
 }
-
 
 @keyframes shimmer {
   0% { background-position: 0% 50%; }
