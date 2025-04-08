@@ -180,25 +180,24 @@
   font-size: 0.9em;
 }
 
-.ContentRight button {
+.MintButton {
+  all: unset;
   display: flex;
-  width: fit-content;
+  justify-content: center;
+  align-items: center;
   font-family: 'Orbitron', sans-serif;
   letter-spacing: 2px;
-  padding: 0.4em 1.4em;
-  align-self: center;
+  padding: 0.5em 1.5em;
   border-radius: 2em;
-  color: black;
-  cursor: pointer;
-  border: none;
   background: linear-gradient(
     108deg,
     rgba(92, 225, 230, 1) 0%,
     rgba(140, 82, 255, 0.549) 100%
   );
   background-size: 400% 400%;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
   animation: shimmer 4s linear infinite, pulseTextGlow 2.5s ease-in-out infinite;
-  box-shadow: 0 0 20px rgb(110, 109, 109);
+  cursor: pointer;
   transition: transform 0.3s ease;
 }
 
