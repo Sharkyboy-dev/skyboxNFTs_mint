@@ -102,6 +102,7 @@
   animation: shimmer 4s linear infinite, pulseTextGlow 2.5s ease-in-out infinite;
   box-shadow: 0 0 20px rgb(110, 109, 109);
   transition: transform 0.3s ease;
+  margin-top: 1rem;
 }
 
 @keyframes shimmer {
@@ -147,7 +148,7 @@
   .ContentRight,
   .ContentLeft {
     width: 100%;
-    flex-direction: column-reverse;
+    flex-direction: column;
   }
 
   .MintDiv span {
