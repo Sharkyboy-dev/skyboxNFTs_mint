@@ -34,7 +34,7 @@
 .ContentContainer {
   margin: 1em auto;
   display: flex;
-  align-items: stretch;
+  align-items: flex-start;
   justify-content: center;
   gap: 3rem;
   flex-wrap: wrap;
@@ -44,12 +44,11 @@
 .ContentLeft,
 .ContentRight {
   width: 500px;
-  flex-grow: 1;
   border: 4px solid rgb(77, 77, 77);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 1em;
   padding: 1.5em;
   background-color: rgba(0, 0, 0, 0.664);
@@ -101,7 +100,7 @@
   font-weight: 800;
   color: #0ff;
   text-shadow: 0 0 10px #0ff;
-  margin-top: 1rem;
+  margin-top: auto;
   text-align: center;
 }
 
