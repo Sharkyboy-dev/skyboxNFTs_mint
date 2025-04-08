@@ -96,10 +96,20 @@
   }
 }
 
-/* 👇 NEW WALLET BUTTON ANIMATION 👇 */
+/* ✅ NEW WALLET BUTTON GLOW + FULL STYLE */
 .walletGlow {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: bold;
+  border: 4px solid var(--c5);
+  border-radius: 10px;
+  padding: 0.4em 1.2em;
+  font-size: 1em;
+  background: linear-gradient(108deg, rgba(212,166,227,1) 0%, rgba(102,182,195,1) 100%);
+  color: var(--c3);
+  cursor: pointer;
   transition: all 0.3s ease;
   animation: shimmerBtn 5s linear infinite;
+  background-size: 400% 400%;
   box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
 }
 
