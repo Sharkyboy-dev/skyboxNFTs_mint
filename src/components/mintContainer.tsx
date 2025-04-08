@@ -91,69 +91,66 @@ const MintContainer = () => {
   }
 
   return (
-    <div className={styles.MintContentWrapper}>
-      <div className={`${styles.MintDiv} ${isSoldOut ? styles.soldOut : ""}`}>
-        <span>SHARKYBOY MINT MACHINE</span>
-        <div className={styles.ContentContainer}>
-          <div className={styles.ContentLeft}>
-            <img src="/logoGif.gif" alt="SharkyBoy" />
-            <div className={styles.IconsContainer}>
-              <a href="https://t.co/2PyAgbMLEj" target="_blank" rel="noreferrer"><FaTelegram /></a>
-              <a href="http://instagram.com/sharkyboy_nft" target="_blank" rel="noreferrer"><FaInstagram /></a>
-              <a href="https://github.com/Sharkyboy-dev" target="_blank" rel="noreferrer"><FaGithub /></a>
-              <a href="https://x.com/sharkyboy_nft" target="_blank" rel="noreferrer"><FaXTwitter /></a>
-            </div>
+  <div className={styles.MintContentWrapper}>
+    <div className={`${styles.MintDiv} ${isSoldOut ? styles.soldOut : ""}`}>
+      <span>SHARKYBOY MINT MACHINE</span>
 
-            {/* ✅ Mint Button moved to left side */}
-            <button
-              className={`${styles.MintButton} ${isMinting ? styles.minting : ""}`}
-              onClick={() => createNft(umi.identity.publicKey)}
-              disabled={
-                isCMLoading || mintingText !== "Mint Now" || umi.identity.publicKey === dummyPublicKey
-              }
-            >
-              {isCMLoading ? (
-                "Loading.."
-              ) : (
-                <div className={styles.MintButtonInner}>
-                  <span className={styles.MintText}>Mint Now</span>
-                  <span className={styles.MintPrice}>0.5 SOL</span>
-                </div>
-              )}
-            </button>
+      <div className={styles.ContentContainer}>
+        {/* LEFT: IMAGE + BUTTON + ICONS */}
+        <div className={styles.ContentLeft}>
+          <img src="/logoGif.gif" alt="SharkyBoy" />
+
+          <button
+            className={`${styles.MintButton} ${isMinting ? styles.minting : ""}`}
+            onClick={() => createNft(umi.identity.publicKey)}
+            disabled={
+              isCMLoading ||
+              mintingText !== "Mint Now" ||
+              umi.identity.publicKey === dummyPublicKey
+            }
+          >
+            {isCMLoading ? "Loading.." : mintingText}
+          </button>
+
+          <div className={styles.IconsContainer}>
+            <a href="https://t.co/2PyAgbMLEj" target="_blank" rel="noreferrer"><FaTelegram /></a>
+            <a href="http://instagram.com/sharkyboy_nft" target="_blank" rel="noreferrer"><FaInstagram /></a>
+            <a href="https://github.com/Sharkyboy-dev" target="_blank" rel="noreferrer"><FaGithub /></a>
+            <a href="https://x.com/sharkyboy_nft" target="_blank" rel="noreferrer"><FaXTwitter /></a>
+          </div>
+        </div>
+
+        {/* RIGHT: DESCRIPTION + PROGRESS BAR */}
+        <div className={styles.ContentRight}>
+          <div className={styles.DescDiv}>
+            <span>Symbol : FIN</span>
+            <span>Description</span>
+            <p>
+              SHARKYBOY THE SHARKYBOY GENESIS COLLECTION IS A LIMITED 1,000-PIECE NFT SERIES FEATURING UNIQUE, BATTLE-READY MUTANT SHARKS WITH BOLD DESIGNS, RARE TRAITS, AND LEGENDARY ORIGINS. MORE THAN JUST COLLECTIBLES, THESE NFTS GRANT EXCLUSIVE COMMUNITY PERKS, FUTURE AIRDROPS, AND GOVERNANCE RIGHTS IN THE SHARKYBOY ECOSYSTEM. WITH A MIX OF SAMURAI WARRIORS, STREET LEGENDS, AND HIGH-TECH COMBAT SHARKS, THIS COLLECTION BLENDS STYLE, RARITY, AND INNOVATION INTO A POWERFUL WEB3 EXPERIENCE. OWN A PIECE OF THE OCEAN'S FIERCEST WARRIORS—ONCE THEY'RE GONE, THEY'RE GONE FOREVER.
+            </p>
+            <p><strong>Mint Price:</strong> 0.5 SOL</p>
           </div>
 
-          <div className={styles.ContentRight}>
-            <div className={styles.DescDiv}>
-              <span>Symbol : FIN</span>
-              <span>Description</span>
-              <p>
-                SHARKYBOY THE SHARKYBOY GENESIS COLLECTION IS A LIMITED 1,000-PIECE NFT SERIES FEATURING UNIQUE, BATTLE-READY MUTANT SHARKS WITH BOLD DESIGNS, RARE TRAITS, AND LEGENDARY ORIGINS. MORE THAN JUST COLLECTIBLES, THESE NFTS GRANT EXCLUSIVE COMMUNITY PERKS, FUTURE AIRDROPS, AND GOVERNANCE RIGHTS IN THE SHARKYBOY ECOSYSTEM. WITH A MIX OF SAMURAI WARRIORS, STREET LEGENDS, AND HIGH-TECH COMBAT SHARKS, THIS COLLECTION BLENDS STYLE, RARITY, AND INNOVATION INTO A POWERFUL WEB3 EXPERIENCE. OWN A PIECE OF THE OCEAN'S FIERCEST WARRIORS—ONCE THEY'RE GONE, THEY'RE GONE FOREVER.
-              </p>
-              <p><strong>Mint Price:</strong> 0.5 SOL</p>
-            </div>
-
-            {/* ✅ Progress bar stays on right */}
-            <div className={styles.MintCountBox}>
-              <div
-                className={`${styles.MintProgressFill} ${
-                  percentage < 33 ? styles.low : percentage < 66 ? styles.medium : styles.high
-                }`}
-                style={{ "--progress-width": `${percentage}%` } as React.CSSProperties}
-              />
-              <div
-                className={`${styles.MintPercent} ${
-                  percentage >= 90 ? styles.nearFull : ""
-                }`}
-              >
-                {redeemed} of {total}
-              </div>
+          <div className={styles.MintCountBox}>
+            <div
+              className={`${styles.MintProgressFill} ${
+                percentage < 33 ? styles.low : percentage < 66 ? styles.medium : styles.high
+              }`}
+              style={{ "--progress-width": `${percentage}%` } as React.CSSProperties}
+            />
+            <div
+              className={`${styles.MintPercent} ${
+                percentage >= 90 ? styles.nearFull : ""
+              }`}
+            >
+              {redeemed} of {total}
             </div>
           </div>
         </div>
       </div>
     </div>
-  );
-};
+  </div>
+);
+
 
 export default MintContainer;
