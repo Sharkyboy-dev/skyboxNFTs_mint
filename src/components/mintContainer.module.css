@@ -130,7 +130,7 @@
   border-radius: 1em;
   padding: 1.5em;
   color: white;
-  text-align: center;
+  text-align: left;
   font-family: 'Orbitron', sans-serif;
   font-size: 0.9em;
   line-height: 1.5em;
@@ -150,6 +150,12 @@
   margin-top: 1em;
   font-style: italic;
   text-shadow: 0 0 5px #0ff;
+}
+
+.RarityBox ul {
+  list-style: none;
+  padding-left: 0;
+  margin-left: 0;
 }
 
 .SocialBox {
