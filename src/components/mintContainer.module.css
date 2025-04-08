@@ -50,7 +50,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   gap: 1em;
   padding: 1.5em;
   background-color: rgba(0, 0, 0, 0.664);
@@ -103,6 +103,14 @@
   animation: shimmer 4s linear infinite, pulseTextGlow 2.5s ease-in-out infinite;
   box-shadow: 0 0 20px rgb(110, 109, 109);
   transition: transform 0.3s ease;
+  margin-top: 1rem;
+}
+
+.MintPriceTag {
+  font-size: 1.2em;
+  font-weight: 800;
+  color: #0ff;
+  text-shadow: 0 0 10px #0ff;
   margin-top: 1rem;
 }
 
