@@ -96,7 +96,7 @@ const MintContainer = () => {
         <span>SHARKYBOY MINT MACHINE</span>
 
         <div className={styles.ContentContainer}>
-          {/* LEFT SIDE: IMAGE + BUTTON + ICONS */}
+          {/* LEFT SIDE: IMAGE + BUTTON + MINT PRICE + ICONS */}
           <div className={styles.ContentLeft}>
             <img src="/logoGif.gif" alt="SharkyBoy" />
 
@@ -111,6 +111,8 @@ const MintContainer = () => {
             >
               {isCMLoading ? "Loading.." : mintingText}
             </button>
+
+            <div className={styles.MintPriceTag}>Mint Price: 0.5 SOL</div>
 
             <div className={styles.IconsContainer}>
               <a href="https://t.co/2PyAgbMLEj" target="_blank" rel="noreferrer"><FaTelegram /></a>
