@@ -183,17 +183,14 @@
 .ContentRight button {
   display: flex;
   width: fit-content;
-  font-size: 3em;
   font-family: 'Orbitron', sans-serif;
-  font-weight: 900;
   letter-spacing: 2px;
-  padding: 0.1em 1em;
+  padding: 0.4em 1.4em;
   align-self: center;
   border-radius: 2em;
   color: black;
   cursor: pointer;
   border: none;
-  text-transform: uppercase;
   background: linear-gradient(
     108deg,
     rgba(92, 225, 230, 1) 0%,
@@ -255,30 +252,4 @@
 }
 
 .MintDiv.soldOut {
-  opacity: 0.4;
-  pointer-events: none;
-  filter: grayscale(0.7);
-  transition: all 0.5s ease-in-out;
-}
-
-@media screen and (max-width: 978px) {
-  .ContentContainer {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .ContentRight {
-    width: 100%;
-    flex-direction: column-reverse;
-  }
-
-  .MintDiv span {
-    font-size: 3em;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .MintDiv {
-    padding: 6rem 0 2em;
-  }
-}
+  opacity:
