@@ -181,7 +181,7 @@ const MintContainer = () => {
           </p>
           <p className={styles.VerifiedLabel}>✅ Verified Mint & Update Authority</p>
           <code className={styles.VerifiedWallet}>
-            RwoeurFKn6zEj3upFgMaRybdLJQhRa3oXoCzyqewp8T
+            RwoeurFKn6zEj3upFgMaRybdLJQhRa3oXoCzyqewp8T<br />
             finzc9xMFo6F5GqPhJrneMnTsZu5eocJzJTMooBGLgv
           </code>
         </div>
