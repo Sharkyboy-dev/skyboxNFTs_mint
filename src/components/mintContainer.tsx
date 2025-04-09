@@ -73,14 +73,14 @@ const MintContainer = () => {
       const nftAccount = await umi.rpc.getAccount(nftMint.publicKey);
 
       if (!nftAccount.exists) {
-        toast.error("\u274C Mint failed: NFT not created on-chain");
+        toast.error("❌ Mint failed: NFT not created on-chain");
         return;
       }
 
       if (confirmation.value.err) {
         toast.error("Mint failed: Not enough SOL or rejected");
       } else {
-        toast.success("\u2705 Mint successful!");
+        toast.success("✅ Mint successful!");
         setIsCMLoading?.(true);
       }
     } catch (err) {
@@ -177,15 +177,9 @@ const MintContainer = () => {
         <div className={styles.AboutUsBox}>
           <h3 className={styles.AboutUsTitle}>About Sharky Labs 🦈</h3>
           <p>
-            SharkyBoy is an indie Solana NFT project built by a small but fierce team known as <strong>Sharky Labs</strong>.
-            We’re creating an ecosystem of art, alpha, and community-powered tools. No VC games, just raw Web3 energy.
+            We’re an indie Web3 team building SharkyBoy with transparency and long-term vision. Our verified creator wallet:
           </p>
-          <ul>
-            <li><strong>X (Twitter):</strong> <a href="https://x.com/sharkyboy_nft" target="_blank">@sharkyboy_nft</a></li>
-            <li><strong>Telegram:</strong> <a href="https://t.me/sharkyboy_alpha" target="_blank">t.me/sharkyboy_alpha</a></li>
-            <li><strong>Email:</strong> <a href="mailto:team@sharkyboy.com">team@sharkyboy.com</a></li>
-            <li><strong>Verified Creator Wallet:</strong> <code>GPoeNUQZbkmK78bJhdRUyP21ycKeJ8cjAC2fcSG7D3d</code></li>
-          </ul>
+          <code>finzc9xMFo6F5GqPhJrneMnTsZu5eocJzJTMooBGLgv</code>
         </div>
       </div>
     </div>
