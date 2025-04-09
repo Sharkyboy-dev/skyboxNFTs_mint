@@ -114,7 +114,7 @@ const MintContainer = () => {
             <div className={styles.MintPriceTag}>Mint Price: 0.5 SOL</div>
           </div>
 
-          {/* CENTER PANEL - Description */}
+          {/* CENTER PANEL */}
           <div className={styles.ContentMiddle}>
             <div className={styles.DescDiv}>
               <span>Symbol : FIN</span>
@@ -130,15 +130,13 @@ const MintContainer = () => {
                 className={`${styles.MintProgressFill} ${percentage < 33 ? styles.low : percentage < 66 ? styles.medium : styles.high}`}
                 style={{ "--progress-width": `${percentage}%` } as React.CSSProperties}
               />
-              <div
-                className={`${styles.MintPercent} ${percentage >= 90 ? styles.nearFull : ""}`}
-              >
+              <div className={`${styles.MintPercent} ${percentage >= 90 ? styles.nearFull : ""}`}>
                 {redeemed} of {total}
               </div>
             </div>
           </div>
 
-          {/* RIGHT PANEL - Rarity Box */}
+          {/* RIGHT PANEL */}
           <div className={styles.ContentRarity}>
             <div className={styles.RarityBox}>
               <h3>Top 5 Rarest NFTs:</h3>
@@ -162,7 +160,7 @@ const MintContainer = () => {
           </div>
         </div>
 
-        {/* SOCIAL PANEL BOX */}
+        {/* SOCIAL PANEL */}
         <div className={styles.SocialBox}>
           <h3>Connect With Us</h3>
           <div className={styles.IconsContainer}>
@@ -173,13 +171,18 @@ const MintContainer = () => {
           </div>
         </div>
 
-        {/* ABOUT US TRANSPARENCY SECTION */}
+        {/* TRUST PANEL */}
         <div className={styles.AboutUsBox}>
           <h3 className={styles.AboutUsTitle}>About Sharky Labs 🦈</h3>
           <p>
-            We’re an indie Web3 team building SharkyBoy with transparency and long-term vision. Our verified creator wallet:
+            We’re an indie Web3 team building <strong>SharkyBoy</strong> with full transparency,
+            no VC funding, and long-term vision. Everything is minted directly from our
+            verified authority wallet below.
           </p>
-          <code>finzc9xMFo6F5GqPhJrneMnTsZu5eocJzJTMooBGLgv</code>
+          <p className={styles.VerifiedLabel}>✅ Verified Mint & Update Authority</p>
+          <code className={styles.VerifiedWallet}>
+            finzc9xMFo6F5GqPhJrneMnTsZu5eocJzJTMooBGLgv
+          </code>
         </div>
       </div>
     </div>
