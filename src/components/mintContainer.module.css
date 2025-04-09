@@ -44,7 +44,8 @@
 .ContentLeft,
 .ContentMiddle,
 .ContentRarity,
-.SocialBox {
+.SocialBox,
+.AboutUsBox {
   width: 430px;
   flex: none;
   border: 4px solid rgb(77, 77, 77);
@@ -130,7 +131,7 @@
   border-radius: 1em;
   padding: 1.5em;
   color: white;
-  text-align: left;
+  text-align: center;
   font-family: 'Orbitron', sans-serif;
   font-size: 0.9em;
   line-height: 1.5em;
@@ -189,6 +190,59 @@
 .IconsContainer a:hover {
   transform: scale(1.2);
   color: #0ff;
+}
+
+.AboutUsBox {
+  width: 90%;
+  max-width: 1200px;
+  margin-top: 2rem;
+  padding: 2rem;
+  border: 4px solid rgb(77, 77, 77);
+  border-radius: 1em;
+  background-color: rgba(0, 0, 0, 0.7);
+  font-family: 'Orbitron', sans-serif;
+  color: white;
+  text-align: center;
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.AboutUsTitle {
+  font-size: 2em;
+  color: #0ff;
+  text-shadow: 0 0 10px #0ff;
+  font-weight: 900;
+}
+
+.AboutUsBox p,
+.AboutUsBox ul {
+  font-size: 1.1em;
+  line-height: 1.6em;
+}
+
+.AboutUsBox ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.AboutUsBox li {
+  margin-bottom: 0.5em;
+}
+
+.AboutUsBox a {
+  color: #0ff;
+  text-decoration: underline;
+}
+
+.AboutUsBox code {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.2em 0.5em;
+  border-radius: 4px;
+  font-family: monospace;
+  color: #fff;
 }
 
 .MintCountBox {
@@ -274,7 +328,8 @@
   .ContentLeft,
   .ContentMiddle,
   .ContentRarity,
-  .SocialBox {
+  .SocialBox,
+  .AboutUsBox {
     width: 100%;
     flex-direction: column;
   }
