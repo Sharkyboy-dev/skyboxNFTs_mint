@@ -159,6 +159,22 @@
   margin-left: 0;
 }
 
+.VerifiedLabel {
+  font-size: 1em;
+  color: #0f0;
+  margin-top: 1em;
+}
+
+.VerifiedWallet {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9em;
+  color: #0ff;
+  word-break: break-word;
+  text-align: center;
+  gap: 0.25em;
+}
+
 .SocialBox {
   margin-top: 1rem;
 }
