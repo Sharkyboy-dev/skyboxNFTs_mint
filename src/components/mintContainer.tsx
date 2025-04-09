@@ -114,7 +114,7 @@ const MintContainer = () => {
             <div className={styles.MintPriceTag}>Mint Price: 0.5 SOL</div>
           </div>
 
-          {/* CENTER PANEL */}
+          {/* CENTER PANEL - Description */}
           <div className={styles.ContentMiddle}>
             <div className={styles.DescDiv}>
               <span>Symbol : FIN</span>
@@ -136,7 +136,7 @@ const MintContainer = () => {
             </div>
           </div>
 
-          {/* RIGHT PANEL */}
+          {/* RIGHT PANEL - Rarity Box */}
           <div className={styles.ContentRarity}>
             <div className={styles.RarityBox}>
               <h3>Top 5 Rarest NFTs:</h3>
@@ -160,7 +160,7 @@ const MintContainer = () => {
           </div>
         </div>
 
-        {/* SOCIAL PANEL */}
+        {/* SOCIAL PANEL BOX */}
         <div className={styles.SocialBox}>
           <h3>Connect With Us</h3>
           <div className={styles.IconsContainer}>
@@ -171,7 +171,7 @@ const MintContainer = () => {
           </div>
         </div>
 
-        {/* TRUST PANEL */}
+        {/* ABOUT US TRANSPARENCY SECTION */}
         <div className={styles.AboutUsBox}>
           <h3 className={styles.AboutUsTitle}>About Sharky Labs 🦈</h3>
           <p>
@@ -181,7 +181,7 @@ const MintContainer = () => {
           </p>
           <p className={styles.VerifiedLabel}>✅ Verified Mint & Update Authority</p>
           <code className={styles.VerifiedWallet}>
-            finzc9xMFo6F5GqPhJrneMnTsZu5eocJzJTMooBGLgv
+            RwoeurFKn6zEj3upFgMaRybdLJQhRa3oXoCzyqewp8T
           </code>
         </div>
       </div>
