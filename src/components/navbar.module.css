@@ -1,346 +1,128 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap');
 
-.MintDiv {
-  padding: 7rem 1em 2em;
-  min-height: fit-content;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
-  font-family: 'Orbitron', sans-serif;
-  font-weight: 900;
-}
-
-.MintDiv span {
-  text-align: center;
-  font-size: 5em;
-  animation: neonFlicker 2.5s ease-out forwards;
-  color: white;
-  text-shadow: 0 0 5px #0ff;
-}
-
-@keyframes neonFlicker {
-  0% { opacity: 0; text-shadow: none; }
-  5% { opacity: 1; text-shadow: 0 0 5px #0ff; }
-  10% { opacity: 0.6; }
-  15% { opacity: 1; text-shadow: 0 0 10px #0ff, 0 0 20px #0ff; }
-  20% { opacity: 0.8; }
-  30%, 100% {
-    opacity: 1;
-    text-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 40px #0ff;
-  }
-}
-
-.ContentContainer {
-  margin: 1em auto;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 2rem;
-  flex-wrap: wrap;
-  max-width: 1400px;
-}
-
-.ContentLeft,
-.ContentMiddle,
-.ContentRarity,
-.SocialBox,
-.AboutUsBox {
-  width: 430px;
-  flex: none;
-  border: 4px solid rgb(77, 77, 77);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 1em;
-  padding: 1.5em;
-  background-color: rgba(0, 0, 0, 0.664);
-  border-radius: 1em;
-  box-sizing: border-box;
-}
-
-.ContentLeft img {
-  width: 100%;
-  max-width: 400px;
-  border-radius: 1em;
-  padding: 10px;
-  box-shadow: 0 0 15px white;
-}
-
-.MintButton {
-  display: flex;
-  width: fit-content;
-  font-size: 2.5em;
-  font-family: 'Orbitron', sans-serif;
-  font-weight: 900;
-  letter-spacing: 2px;
-  padding: 0.1em 1em;
-  align-self: center;
-  border-radius: 2em;
-  color: black;
-  cursor: pointer;
-  border: none;
-  text-transform: uppercase;
-  background: linear-gradient(108deg, rgba(92, 225, 230, 1) 0%, rgba(140, 82, 255, 0.549) 100%);
-  background-size: 400% 400%;
-  animation: shimmer 4s linear infinite, pulseTextGlow 2.5s ease-in-out infinite;
-  box-shadow: 0 0 20px rgb(110, 109, 109);
-  transition: transform 0.3s ease;
-  margin-top: 1rem;
-}
-
-.MintPriceTag {
-  font-size: 1.2em;
-  font-weight: 800;
-  color: #0ff;
-  text-shadow: 0 0 10px #0ff;
-  margin-top: 1rem;
-  text-align: center;
-}
-
-.DescDiv {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 1em;
-  background-color: rgba(0, 0, 0, 0.664);
-  border: 4px solid rgb(88, 88, 88);
-  padding: 2em 1.5em;
-  border-radius: 1em;
-  color: var(--c5);
-  box-sizing: border-box;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-}
-
-.DescDiv span {
-  font-size: 2em;
-  font-weight: 900;
-  font-family: 'Orbitron', sans-serif;
-  color: white;
-  text-shadow: 0 0 10px #0ff;
-}
-
-.RarityBox {
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.664);
-  border: 4px solid rgb(77, 77, 77);
-  border-radius: 1em;
-  padding: 1.5em;
-  color: white;
-  text-align: center;
-  font-family: 'Orbitron', sans-serif;
-  font-size: 0.9em;
-  line-height: 1.5em;
-  box-shadow: 0 0 12px rgba(0, 255, 255, 0.3);
-}
-
-.RarityBox h3 {
-  font-size: 1.3em;
-  color: #0ff;
-  text-shadow: 0 0 5px #0ff;
-  margin-bottom: 0.5em;
-}
-
-.RarityBox p em {
-  color: #0ff;
-  display: block;
-  margin-top: 1em;
-  font-style: italic;
-  text-shadow: 0 0 5px #0ff;
-}
-
-.RarityBox ul {
-  list-style: none;
-  padding-left: 0;
-  margin-left: 0;
-}
-
-.SocialBox {
-  margin-top: 1rem;
-}
-
-.SocialBox h3 {
-  font-size: 1.3em;
-  color: #0ff;
-  margin-bottom: 0.5em;
-  font-family: 'Orbitron', sans-serif;
-  text-shadow: 0 0 5px #0ff;
-}
-
-.IconsContainer {
-  display: flex;
-  justify-content: center;
-  gap: 1.5em;
-  padding: 0.5em 1em;
-  border: 2px solid white;
-  border-radius: 1em;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-.IconsContainer a {
-  font-size: 1.8em;
-  color: white;
-  transition: transform 0.2s ease, color 0.2s ease;
-}
-
-.IconsContainer a:hover {
-  transform: scale(1.2);
-  color: #0ff;
-}
-
-.AboutUsBox {
-  width: 90%;
-  max-width: 1200px;
-  margin-top: 2rem;
-  padding: 2rem;
-  border: 4px solid rgb(77, 77, 77);
-  border-radius: 1em;
-  background-color: rgba(0, 0, 0, 0.7);
-  font-family: 'Orbitron', sans-serif;
-  color: white;
-  text-align: center;
-  box-shadow: 0 0 12px rgba(0, 255, 255, 0.3);
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.AboutUsTitle {
-  font-size: 2em;
-  color: #0ff;
-  text-shadow: 0 0 10px #0ff;
-  font-weight: 900;
-}
-
-.AboutUsBox p,
-.AboutUsBox ul {
-  font-size: 1.1em;
-  line-height: 1.6em;
-}
-
-.AboutUsBox ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.AboutUsBox li {
-  margin-bottom: 0.5em;
-}
-
-.AboutUsBox a {
-  color: #0ff;
-  text-decoration: underline;
-}
-
-.AboutUsBox code {
-  background: rgba(255, 255, 255, 0.1);
-  padding: 0.2em 0.5em;
-  border-radius: 4px;
-  font-family: monospace;
-  color: #fff;
-}
-
-.MintCountBox {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  height: 60px;
-  overflow: hidden;
-  border-radius: 2em;
-  background: white;
-  margin-top: 1rem;
-}
-
-.MintProgressFill {
-  position: absolute;
-  left: 0;
+.navbarContainer {
+  width: 100vw;
+  position: fixed;
   top: 0;
-  height: 100%;
-  border-radius: 2em;
-  z-index: 1;
-  animation: growBar 1.5s ease-out forwards;
-  width: var(--progress-width);
-  background-color: #0af;
+  left: 0;
+  z-index: 1000;
+  background-color: black;
+  border-top: 3px solid white;
+  border-bottom: 3px solid white;
+  font-family: 'Orbitron', sans-serif;
+  padding: 0.3em 0;
 }
 
-.MintProgressFill.low { background-color: #0af; }
-.MintProgressFill.medium { background-color: orange; }
-.MintProgressFill.high { background-color: red; }
-
-.MintPercent {
-  font-size: 1.8em;
-  font-weight: 700;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #000;
-  z-index: 2;
+.Top {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6em 1em;
+  gap: 1rem;
+  flex-wrap: nowrap;
 }
 
-@keyframes shimmer {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 100% 50%; }
+.LinkContainer {
+  display: flex;
+  gap: 1em;
+  align-items: center;
+  font-size: 1.6em;
+  color: var(--c5);
+  flex: 1;
+}
+
+.LinkContainer a {
+  font-family: 'Orbitron', sans-serif;
+  text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff;
+  text-decoration: none;
+  color: #0ff;
+  font-weight: 800;
+  letter-spacing: 1px;
+  animation: pulseTextGlow 2.5s ease-in-out infinite;
+  transition: transform 0.3s ease;
+  white-space: nowrap;
+}
+
+.LinkContainer a:hover {
+  transform: scale(1.1);
+  text-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 30px #0ff;
 }
 
 @keyframes pulseTextGlow {
   0%, 100% {
     text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 15px #0ff;
-    transform: scale(1);
   }
   50% {
     text-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 30px #0ff;
-    transform: scale(1.05);
   }
 }
 
-.ContentRight button.minting {
-  animation: pulseMint 1s infinite, shimmer 4s linear infinite;
-  transform: scale(1.02);
+.WalletWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: auto;
+  margin-left: auto;
 }
 
-@keyframes pulseMint {
-  0% { box-shadow: 0 0 0px rgba(255, 255, 255, 0.5); }
-  50% { box-shadow: 0 0 15px rgba(255, 255, 255, 0.9); }
-  100% { box-shadow: 0 0 0px rgba(255, 255, 255, 0.5); }
-}
-
-.MintDiv.soldOut {
-  opacity: 0.4;
-  pointer-events: none;
-  filter: grayscale(0.7);
-  transition: all 0.5s ease-in-out;
-}
-
-@media screen and (max-width: 978px) {
-  .ContentContainer {
-    flex-direction: column;
-    align-items: center;
+@media screen and (max-width: 768px) {
+  .Top {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+    padding: 0.4em 1em;
   }
 
-  .ContentLeft,
-  .ContentMiddle,
-  .ContentRarity,
-  .SocialBox,
-  .AboutUsBox {
-    width: 100%;
-    flex-direction: column;
+  .LinkContainer {
+    flex: none;
+    font-size: 1.2em;
+    gap: 0.7em;
   }
 
-  .MintDiv span {
-    font-size: 3em;
+  .WalletWrapper {
+    flex: none;
+    margin-left: auto;
+    justify-content: flex-end;
+  }
+
+  .LinkContainer a {
+    padding: 0.1em 0.4em;
+  }
+
+  .navbarContainer {
+    padding: 0.2em 0;
   }
 }
 
-@media screen and (max-width: 600px) {
-  .MintDiv {
-    padding: 6rem 0 2em;
+/* ✅ NEW WALLET BUTTON GLOW + FULL STYLE */
+.walletGlow {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: bold;
+  border: 4px solid var(--c5);
+  border-radius: 10px;
+  padding: 0.4em 1.2em;
+  font-size: 1em;
+  background: linear-gradient(108deg, rgba(212,166,227,1) 0%, rgba(102,182,195,1) 100%);
+  color: var(--c3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  animation: shimmerBtn 5s linear infinite;
+  background-size: 400% 400%;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+}
+
+.walletGlow:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+}
+
+@keyframes shimmerBtn {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
   }
 }
